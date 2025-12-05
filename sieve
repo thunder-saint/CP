@@ -1,13 +1,21 @@
-   vector<bool> prime (int n) {
-       vector<bool> isPrime(n+1,true);
-       isPrime[0]=isPrime[1]=false;
-       for(int i=2; i*i<=n; i++) {
-           if(isPrime[i]) {
-               for(int j=i*i; j<=n; j+=i) isPrime[j]=false;
-           }
-       }
-       return isPrime;
-   }
+const int MAX_N = 100000000; 
+bitset<MAX_N + 1> prime;
+vector <int> p;
+void sieve() {
+    prime.set();
+    prime[0] = prime[1] = 0;
+    for (int p = 2; p * p <= MAX_N; p++) {
+        if (prime[p]) {
+            for (int i = p * p; i <= MAX_N; i += p) {
+                prime[i] = 0;
+            }
+        }
+    }
+    for(int i=2; i< MAX_N; i++) {
+     if(prime[i]) p.push_back(i);
+    }
+}
+
 
 
 //SPF: 
@@ -26,6 +34,9 @@ void SPF() {
         }
     }
 }
+
+
+
 
 //phi:
 
