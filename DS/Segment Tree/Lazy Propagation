@@ -1,4 +1,4 @@
-//lazy:
+
 const int N = 5e5 + 9;
 int a[N];
 
