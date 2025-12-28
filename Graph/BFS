@@ -1,0 +1,23 @@
+const int MAXN = 1e5 + 1;
+vector<int> g[MAXN];
+int dist[MAXN], par[MAXN];
+bool vis[MAXN];
+void bfs(int source) {
+    queue<int> q;
+    dist[source] = 0;
+    vis[source] = true;
+    q.push(source);
+    while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+
+        for (auto v : g[u]) {
+            if (!vis[v]) {
+                vis[v] = true;
+                dist[v] = dist[u] + 1;
+                par[v]=u;
+                q.push(v);
+            }
+        }
+    }
+}
