@@ -7,8 +7,8 @@ void dfs(int source) {
     subtree_sz[source] = 1;
     for (auto &v : g[source]) {
         if (!vis[v]) {
-            depth[v] = depth[source] + 1;
             dfs(v);
+            depth[v] = depth[source] + 1;
             subtree_sz[source] += subtree_sz[v];
         }
     }
