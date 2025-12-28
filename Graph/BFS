@@ -1,7 +1,7 @@
-const int MAXN = 1e5 + 1;
-vector<int> g[MAXN];
-int dist[MAXN], par[MAXN];
-bool vis[MAXN];
+const int N = 1e5 + 1;
+vector<int> g[N];
+int dist[N], par[N];
+bool vis[N];
 void bfs(int source) {
     queue<int> q;
     dist[source] = 0;
