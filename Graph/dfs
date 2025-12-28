@@ -1,0 +1,15 @@
+const int N = 1e5 + 1;
+vector<int> g[N];
+bool vis[N];
+int depth[N], subtree_sz[N];
+void dfs(int source) {
+    vis[source] = true;
+    subtree_sz[source] = 1;
+    for (auto &v : g[source]) {
+        if (!vis[v]) {
+            depth[v] = depth[source] + 1;
+            dfs(v);
+            subtree_sz[source] += subtree_sz[v];
+        }
+    }
+}
