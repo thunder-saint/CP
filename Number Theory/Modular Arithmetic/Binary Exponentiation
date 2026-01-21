@@ -1,0 +1,11 @@
+int power(int x, int n) { 
+    int ans = 1;
+    x %= MOD;
+    if (x < 0) x += MOD;
+    while (n) {
+        if (n & 1) ans =  ans * x % MOD;
+        x = 1LL * x * x % MOD;
+        n >>= 1; 
+    }
+    return ans;
+}
