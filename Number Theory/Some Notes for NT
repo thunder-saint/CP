@@ -1,0 +1,11 @@
+# if p is prime:
+      => (a^n) % p = (a^(n%(p-1))) % n; 
+      => (1/a) % p = (a^(p-1)) % p;
+# if (a-b)%m=0 then: a%m = b%m;
+
+# Product of divisors of N = N^(NOD/2);
+
+#phi related:
+      => phi(n) = n * ((p1-1)/p1) * ((p2-1)/p2) * ... * ((pk-1)/pk);
+      => from 1-N the count of numbers for which GCD(x,N)=d is phi(N/d);
+      => Sum of Co-primes of N = (phi(N)/2) * N;
