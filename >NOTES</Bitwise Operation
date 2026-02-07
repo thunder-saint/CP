@@ -1,0 +1,56 @@
+# Toggle the kth bit: 
+              (x ⊕ (1 << k));
+# Set the kth bit: 
+              (x | (1 << k));
+# Unset the kth bit:
+              (x &~ (1 << k));
+# Check if the kth bit is On/Off:
+              (x & (1<<k));
+# A number with only the lowest set bit of x turned on: ( x & (-x))
+# Submusk: 
+        (x & y) == y;
+# Clear LSB upto kth bit 
+        ( x & (~(1 << (k+1) - 1 )));
+# Clear MSB upto kth bit 
+        ( x & ((1 << (k+1) - 1 )));
+
+# x / (2^k) = (x >> k);
+# x * (2^k) = (x << k);
+# x % (2^k) = x & ((1 << k) - 1); 
+
+# Swapping: 
+     x = x ⊕ y;
+     y = x ⊕ y;
+     x = x ⊕ y;
+# Swap adjacent bits: 
+      ((n & 0xAAAAAAAA) >> 1 ) | ((n & 0x55555555) << 1)
+
+# Bit reversal:
+     if (n & (1<<i))  s|= ( 1 << (len - 1 - i));
+
+# Formulas:
+    => (A | B) = (A ⊕ B) + (A & B);   
+    => (A ⊕ B) = (A & B) ⊕ (A | B);
+
+    => (A ⊕ (A & B)) = ((A | B) ⊕ B);
+                      = (A &~ B);
+    => (A ⊕ (A | B)) = ((A & B) ⊕ B);
+                      = (B &~ A);
+
+    => (A + B) = (A ⊕ B) + 2 ( A & B);
+               = (A | B) + (A & B);
+
+    => (A - B) = (A ⊕ (A & B)) - (A ⊕ (A | B));
+               = ((A | B) ⊕ B) - (A ⊕ (A | B));
+               = (A ⊕ (A & B)) - ((A & B) ⊕ B);
+               = ((A | B) ⊕ B) - ((A & B) ⊕ B);
+
+# Tips;
+   => (A | B) <= (A + B);
+
+   
+
+
+
+
+
