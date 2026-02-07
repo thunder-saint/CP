@@ -6,13 +6,18 @@
               (x &~ (1 << k));
 # Check if the kth bit is On/Off:
               (x & (1<<k));
+# Off all bits except last k:
+              (x & (1 << k ) - 1);
+
 # A number with only the lowest set bit of x turned on: ( x & (-x))
+# Is Power of 2?:	x & (x - 1) == 0;
+# Remove LSB:	x & (x - 1);
 # Submusk: 
         (x & y) == y;
 # Clear LSB upto kth bit 
-        ( x & (~(1 << (k+1) - 1 )));
+        ( x & ~((1 << (k + 1)) - 1));
 # Clear MSB upto kth bit 
-        ( x & ((1 << (k+1) - 1 )));
+        ( x & ((1 << (k + 1)) - 1));
 
 # x / (2^k) = (x >> k);
 # x * (2^k) = (x << k);
@@ -47,6 +52,10 @@
 
 # Tips;
    => (A | B) <= (A + B);
+   => if x is even, then: (x+1) = (x⊕1);
+   => if (A & B = 0):
+                 (A + B) = (A ⊕ B) = (A | B);
+
 
    
 
