@@ -1,3 +1,4 @@
+// for queries
 int lcp(int i, int j, int x, int y) {
     int l = 1, r = min(j-i+1, y-x+1), ans=0;
     while(l<=r) {
