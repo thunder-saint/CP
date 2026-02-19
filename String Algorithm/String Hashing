@@ -1,6 +1,6 @@
 const int N = 1e6 + 1;
 const int p1 = 137, p2 = 277;
-const int mod1 = 1e9 + 7, mod2 = 1e9 + 9;
+const int mod1 = 127657753, mod2 = 987654319;
 int ip1, ip2;
 pair <int,int> pw[N], ipw[N];
 
