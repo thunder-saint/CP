@@ -1,4 +1,4 @@
-int power(int x, int n) { 
+int power(int x, int n, int MOD) { 
     int ans = 1 % MOD;
     x %= MOD;
     if (x < 0) x += MOD;
