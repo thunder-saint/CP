@@ -1,5 +1,5 @@
 int power(int x, int n) { 
-    int ans = 1%MOD;
+    int ans = 1 % MOD;
     x %= MOD;
     if (x < 0) x += MOD;
     while (n) {
