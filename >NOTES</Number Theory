@@ -11,7 +11,7 @@
      => (A-B) % M = ((A%M) - (B%M)+M) % M;
      => (A/B) % M = ((A%M) * ((B^-1) %M)) % M;
 
-#Phi related:
+# Phi related:
       => phi(n) = n * ((p1-1)/p1) * ((p2-1)/p2) * ... * ((pk-1)/pk);
       => from 1-N the count of numbers for which GCD(x,N)=d is phi(N/d);
       => Sum of Co-primes of N = (phi(N)/2) * N;
