@@ -33,25 +33,25 @@ pair<int, int> string_hash(string s) {
 
 // for substring hashing
 struct Hashing {
-     pair<int, int> pref[N];
-     void build(string s) {
-       int n = s.size();
-       for (int i = 0; i < n; i++) {
-         pref[i].first = 1LL * s[i] * pw[i].first % mod1;
-         if (i) pref[i].first = (pref[i].first + pref[i - 1].first) % mod1;
-         pref[i].second = 1LL * s[i] * pw[i].second % mod2;
-         if (i) pref[i].second = (pref[i].second + pref[i - 1].second) % mod2;
-       }
-     }
-     pair<int, int> get_hash(int i, int j) {
-       assert(i <= j);
-       pair<int, int> hs({0, 0});
-       hs.first = pref[j].first;
-       if (i) hs.first = (hs.first - pref[i - 1].first + mod1) % mod1;
-       hs.first = 1LL * hs.first * ipw[i].first % mod1;
-       hs.second = pref[j].second;
-       if (i) hs.second = (hs.second - pref[i - 1].second + mod2) % mod2;
-       hs.second = 1LL * hs.second * ipw[i].second % mod2;
-       return hs;
-     }
-   } S, R;
+    pair<int, int> pref[N];
+    void build(string s) {
+        int n = s.size();
+        for (int i = 0; i < n; i++) {
+            pref[i].first = 1LL * s[i] * pw[i].first % mod1;
+            if (i) pref[i].first = (pref[i].first + pref[i - 1].first) % mod1;
+            pref[i].second = 1LL * s[i] * pw[i].second % mod2;
+            if (i) pref[i].second = (pref[i].second + pref[i - 1].second) % mod2;
+        }
+    }
+    pair<int, int> get_hash(int i, int j) {
+        assert(i<=j);
+        pair<int, int> hs({0, 0});
+        hs.first = pref[j].first;
+        if (i) hs.first = (hs.first - pref[i - 1].first + mod1) % mod1;
+        hs.first = 1LL * hs.first * ipw[i].first % mod1;
+        hs.second = pref[j].second;
+        if (i) hs.second = (hs.second - pref[i - 1].second + mod2) % mod2;
+        hs.second = 1LL * hs.second * ipw[i].second % mod2;
+        return hs;
+    }
+} S, R;
