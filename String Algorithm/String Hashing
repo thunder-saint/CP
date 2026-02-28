@@ -5,11 +5,11 @@ int ip1, ip2;
 pair <int,int> pw[N], ipw[N];
 
 void pre() {
-    pw[0] =ipw[0] = {1,1};
+    pw[0] = ipw[0] = {1,1};
     ip1 = power(p1, mod1 - 2, mod1);
     ip2 = power(p2, mod2 - 2, mod2);
 
-    for(int i=1; i<N; i++) {
+    for(int i = 1; i < N; i++) {
         pw[i].first = pw[i-1].first * p1 % mod1;
         pw[i].second = pw[i-1].second * p2 % mod2;
 
