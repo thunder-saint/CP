@@ -10,11 +10,11 @@ void pre() {
     ip2 = power(p2, mod2 - 2, mod2);
 
     for(int i = 1; i < N; i++) {
-        pw[i].first = pw[i-1].first * p1 % mod1;
-        pw[i].second = pw[i-1].second * p2 % mod2;
+        pw[i].first = 1LL * pw[i-1].first * p1 % mod1;
+        pw[i].second = 1LL * pw[i-1].second * p2 % mod2;
 
-        ipw[i].first = ipw[i-1].first * ip1 % mod1;
-        ipw[i].second = ipw[i-1].second * ip2 % mod2;
+        ipw[i].first = 1LL * ipw[i-1].first * ip1 % mod1;
+        ipw[i].second = 1LL * ipw[i-1].second * ip2 % mod2;
     }
 } 
 
