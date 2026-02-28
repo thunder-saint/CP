@@ -19,7 +19,7 @@ void pre() {
 } 
 
 
-pair<int, int> string_hash(string s) {
+pair<int, int> string_hash(const string &s)) {
     int n = s.size();
     pair<int, int> hs({0, 0});
 
@@ -34,7 +34,7 @@ pair<int, int> string_hash(string s) {
 // for substring hashing
 struct Hashing {
     pair<int, int> pref[N];
-    void build(string s) {
+    void build(const string &s) {
         int n = s.size();
         for (int i = 0; i < n; i++) {
             pref[i].first = 1LL * s[i] * pw[i].first % mod1;
