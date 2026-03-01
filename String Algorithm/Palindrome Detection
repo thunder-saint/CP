@@ -7,7 +7,6 @@ bool is_palindrome(int i, int j) {
 
 void palindrome(const string &s) {
     string f;
-    n = s.size();
     f = s;
     odd.resize(n), even.resize(n);
     reverse(all(f));
