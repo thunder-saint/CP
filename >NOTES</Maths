@@ -1,1 +1,2 @@
 # if (a*b)<=n then a<=(n/b);
+# any array of n positive integers, there exists a non-empty subset whose sum is divisible by n;
