@@ -1,1 +1,11 @@
+# nPr = n!/(n-r)!
+# nCr = n!/(r! * (n-r)!)
+# nCr = nCn-r = (n-1)C(r-1) + (n-1)Cr;
+# nCn/2 is maximum 
 
+#arrange all objects, some identical: n! / (n1! * n2! * n3! * .... nk!);
+# Choose k objects out of n:
+                    1) nPk (order matters, no repetition);
+                    2) nCk (order doesn’t matter, no repetition);
+                    3) (n+k-1)Ck (order doesn’t matter, with repetition);
+                    4) n^k (order matter, with repetition);
