@@ -1,5 +1,3 @@
-//phi:
-
 const int N = 1e5 + 9;
 int phi[N];
 void totient() {
