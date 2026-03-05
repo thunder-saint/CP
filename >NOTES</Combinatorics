@@ -9,3 +9,5 @@
                     2) nCk (order doesn’t matter, no repetition);
                     3) (n+k-1)Ck (order doesn’t matter, with repetition);
                     4) n^k (order matter, with repetition);
+# number of ways to go to (n,m) from (x,y) = (n-x+m-y)C(n-x)
+
