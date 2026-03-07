@@ -1,6 +1,4 @@
 # if (a*b)<=n then a<=(n/b);
-# To count the number of integers x in [l, r] such that (x % n = rem):
-                                            count = (r - rem) / n - ((l - 1) - rem) / n
 # in any array of N positive integers, there exists a non-empty contiguous subarray whose sum is divisible by N;
 # if N+1 objects are put into N boxes, then at least one box contains 2 or more objects;
 # fibonacci numbers count binary sequences with no consecutive zeros;
