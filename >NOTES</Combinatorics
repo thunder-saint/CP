@@ -7,7 +7,7 @@
 # Choose k objects out of n:
                     1) nPk (order matters, no repetition);
                     2) nCk (order doesn’t matter, no repetition);
-                    3) (n+k-1)Ck (order doesn’t matter, with repetition);
+                    3) (n+k-1)Cn (order doesn’t matter, with repetition);
                     4) n^k (order matter, with repetition);
 # number of ways to go to (n,m) from (x,y) = (n-x+m-y)C(n-x)
 
