@@ -52,6 +52,7 @@
 
 # Tips;
    => (A | B) <= (A + B);
+   => if A,B>0 then: (A & B) <= min(A,B)
    => if x is even, then: (x+1) = (x⊕1);
    => if (A & B = 0):
                  (A + B) = (A ⊕ B) = (A | B);
