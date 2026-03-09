@@ -2,4 +2,4 @@
 # the number of positive divisors of 𝑝^𝑒 that are divisible by 𝑝^𝑎 is: e - a + 1
 # in any array of N positive integers, there exists a non-empty contiguous subarray whose sum is divisible by N;
 # if N+1 objects are put into N boxes, then at least one box contains 2 or more objects;
-# fibonacci numbers count binary sequences with no consecutive zeros;
+# The (n+2)th fibonacci number counts binary sequences of length n with no consecutive 1s (equivalently, no consecutive 0s).
