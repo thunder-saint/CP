@@ -2,11 +2,11 @@ const int N = 1e5 + 1;
 vector<int> g[N];
 int dist[N], par[N];
 bool vis[N];
-void bfs(int source) {
+void bfs(int s) {
     queue<int> q;
-    dist[source] = 0;
-    vis[source] = true;
-    q.push(source);
+    dist[s] = 0;
+    vis[s] = true;
+    q.push(s);
     while (!q.empty()) {
         int u = q.front();
         q.pop();
