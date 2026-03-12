@@ -1,16 +1,25 @@
 const int N = 1e5 + 1;
 vector<int> g[N];
-bool vis[N];
+bool vis[N], leaf[N];
 int depth[N], subtree_sz[N], height[N];
-void dfs(int source) {
-    vis[source] = true;
-    subtree_sz[source] = 1;
-    for (auto &v : g[source]) {
+int tin[N], tout[N], par[N];
+int timer = 0;
+void dfs(int u, int p ) {
+    tin[u] = ++timer; 
+    vis[u] = true;
+    height[u] = 0;  
+    subtree_sz[u] = 1;
+    par[u] = p;
+    leaf[u] = true;
+    for (auto &v : g[u]) {
+        if(v == p) continue;
         if (!vis[v]) {
-            depth[v] = depth[source] + 1;
-            dfs(v);
-            height[source]=max(height[source],height[v]+1);
-            subtree_sz[source] += subtree_sz[v];
+            leaf[u] = false; 
+            depth[v] = depth[u] + 1;
+            dfs(v,u);
+            height[u]=max(height[u],height[v]+1);
+            subtree_sz[u] += subtree_sz[v];
         }
     }
+    tout[u] = timer;
 }
