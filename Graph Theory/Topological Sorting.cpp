@@ -3,12 +3,12 @@ int indeg[N];
 vector<int> g[N];
 vector<int> Topological_sort(int n) {
     vector<int> ans;
-    priority_queue<int, vector<int>, greater<int>> q;
+    queue<int> q;
     for (int i = 1; i <= n; i++) {
         if (indeg[i] == 0) q.push(i);
     }
     while (!q.empty()) {
-        int cur = q.top();
+        int cur = q.front();
         q.pop();
         ans.push_back(cur);
 
