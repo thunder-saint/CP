@@ -33,6 +33,43 @@ ostream &operator << ( ostream & os, const map< F, S > &v ) {
     }
     return os << "]";
 }
+template< typename T >
+ostream &operator << ( ostream & os, queue<T> q){
+    os << "[";
+    while(!q.empty()){
+        os << q.front() << ", ";
+        q.pop();
+    }
+    return os << "]";
+}
+template< typename T >
+ostream &operator << (ostream& os,  stack<T> s){
+    os << "[";
+    while(!s.empty()){
+        os << s.top() << ", ";
+        s.pop();
+    }
+    return os << "]";
+}
+template< typename T >
+ostream &operator << (ostream& os, priority_queue<T> pq){
+    os << "[";
+    while(!pq.empty()){
+        os << pq.top() << ", ";
+        pq.pop();
+    }
+    return os << "]";
+}
+template< typename T >
+ostream &operator<<(ostream &os, const vector<vector<T>> & mat){
+    os << "\n";
+    for(auto &row : mat){
+        os << "[ ";
+        for(auto &x : row) os << x << " ";
+        os << "]\n";
+    }
+    return os;
+}
 #define dbg(args...) do {cerr << #args << " : "; faltu(args); } while(0)
 void faltu () {
     cerr << endl;
