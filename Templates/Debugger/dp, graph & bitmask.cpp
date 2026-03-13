@@ -7,10 +7,11 @@
 /* -------- MATRIX / DP DEBUG -------- */
 
 template<typename T>
-ostream& operator<<(ostream& os, const vector<vector<T>>& mat){
-    for(const auto &row : mat){
-        for(const auto &x : row)
-            os << setw(5) << x << " ";
+ostream& operator<<(ostream& os, const vector<vector<T>>& mat) {
+    os << "\n";
+    for (const auto& row : mat) {
+        os << "  "; 
+        for (const auto& x : row) os << setw(5) << x << " ";
         os << "\n";
     }
     return os;
