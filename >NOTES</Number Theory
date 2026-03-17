@@ -24,4 +24,6 @@
       => if GCD(a,n) = 1, then:
                         -> (1/a) % n = a^(φ(n)-1) % n
                         -> φ(a*n) = φ(a) * φ(n);
+
+# if a = ∏(Pi^ei), b = ∏(Pi^fi) and ∏(Pi^(ei%2)) = ∏(Pi^(fi%2)) then: a*b is a perfect square; 
    
