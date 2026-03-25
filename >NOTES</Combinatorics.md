@@ -17,7 +17,7 @@
 - number of ways to go to (n,m) from (x,y) = (n-x+m-y)C(n-x);
 ---
 
-# *Binomial Theorem:** 
+# **Binomial Theorem:** 
 - (a+b)^n = Σ(nCk)*a^(n-k)*b^k [from k=0,1,..,n];
 - Σ(nCk) = 2^n [from k=0,1,..,n];;
 
