@@ -1,6 +1,6 @@
 # **Fermat’s Little Theorem**:
 - if p is prime:
-      - (a^n) % p = (a^(n%(p-1))) % p; 
+      - (a^n) % p = (a^(n%(p-1))) % p;
       - (1/a) % p = (a^(p-2)) % p;
 
 # **Modular Arithmetic:**
