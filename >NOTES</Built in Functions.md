@@ -1,5 +1,5 @@
 # **Bit**:
-- to count set bit : __builtin_popcountll(x);
+- to count set bit: __builtin_popcountll(x);
 - to count Leading Zeros: __builtin_clz(x);
 - to count Trailing Zeros: __builtin_ctz(x);
 ---
