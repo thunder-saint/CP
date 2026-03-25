@@ -32,7 +32,8 @@
 - if (n & (1<<i))  s|= ( 1 << (len - 1 - i));
 ---
 
-# **Formulas:**
+# Formulas:
+
 - (A | B) = (A ⊕ B) + (A & B);   
 - (A ⊕ B) = (A & B) ⊕ (A | B);
 
