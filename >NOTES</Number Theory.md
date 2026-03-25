@@ -17,16 +17,13 @@
 
 # Euler’s Totient Related
 
-- φ(n) = n ∏ (1 - 1/Pi)  
-  [from i = 1, 2, .., k and Pi: distinct prime factors of n];
+- φ(n) = n ∏ (1 - 1/Pi)  [from i = 1, 2, .., k and Pi: distinct prime factors of n];
 
-- from 1 to N the count of numbers for which GCD(x, N) = d is:
-    - φ(N / d);
+- from 1 to N the count of numbers for which GCD(x, N) = d is: φ(N / d);
 
 - Sum of Co-primes of N = (φ(N) / 2) * N;
 
-- if n = p^k:
-    - φ(p^k) = (p^k) - p^(k-1);
+- if n = (p^k): φ(p^k) = (p^k) - p^(k-1);
 
 - for the divisors of N, d:
     - ∑ φ(d) = N   [for d | N];
@@ -40,10 +37,8 @@
 
 # Others
 
-- if (a - b) % m = 0 then:
-    - a % m = b % m;
+- if (a - b) % m = 0 then: a % m = b % m;
 
 - Product of divisors of N = N^(NOD / 2);
 
-- if a = ∏(Pi^ei), b = ∏(Pi^fi) and ∏(Pi^(ei % 2)) = ∏(Pi^(fi % 2)) then:
-    - a * b is a perfect square;
+- if a = ∏(Pi^ei), b = ∏(Pi^fi) and ∏(Pi^(ei % 2)) = ∏(Pi^(fi % 2)) then: a * b is a perfect square;
