@@ -9,9 +9,9 @@
 - to store a number as string : to_string(n);
 - to convert a char to string (x times): string(x, char);
 - to check if a string is in another string:
-       - if(s.find(str) != string::npos);
+    - if(s.find(str) != string::npos);
 - to get substring of length len from a string s, starting from index i: 
-       -s.substr(i,len);
+    - s.substr(i,len);
 ---
 
 # **Bitset:**
