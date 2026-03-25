@@ -1,13 +1,13 @@
 # **Fermat’s Little Theorem**:
 -if p is prime:
-      -(a^n) % p = (a^(n%(p-1))) % p; 
-      -(1/a) % p = (a^(p-2)) % p;
+      - (a^n) % p = (a^(n%(p-1))) % p; 
+      - (1/a) % p = (a^(p-2)) % p;
 
 # **Modular Arithmetic:**
--(A+B) % M = ((A%M) + (B%M)) % M;
--(A*B) % M = ((A%M) * (B%M)) % M;
--(A-B) % M = ((A%M) - (B%M)+M) % M;
--(A/B) % M = ((A%M) * ((B^-1) %M)) % M;
+- (A+B) % M = ((A%M) + (B%M)) % M;
+- (A*B) % M = ((A%M) * (B%M)) % M;
+- (A-B) % M = ((A%M) - (B%M)+M) % M;
+- (A/B) % M = ((A%M) * ((B^-1) %M)) % M;
 
 # **Euler’s Totient related:**
 - φ(n) = n ∏ (1 - 1/Pi) [from i=1,2,..,k ans Pi: distinct prime factors of n];
