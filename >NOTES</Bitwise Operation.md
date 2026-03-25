@@ -34,21 +34,26 @@
 
 # Formulas:
 
-- (A | B) = (A ⊕ B) + (A & B);   
-- (A ⊕ B) = (A & B) ⊕ (A | B);
-
-- (A ⊕ (A & B)) = ((A | B) ⊕ B);
-                      = (A &~ B);
-- (A ⊕ (A | B)) = ((A & B) ⊕ B);
-                      = (B &~ A);
-
-- (A + B) = (A ⊕ B) + 2 ( A & B);
-          = (A | B) + (A & B);
-
-- (A - B) = (A ⊕ (A & B)) - (A ⊕ (A | B));
-               = ((A | B) ⊕ B) - (A ⊕ (A | B));
-               = (A ⊕ (A & B)) - ((A & B) ⊕ B);
-               = ((A | B) ⊕ B) - ((A & B) ⊕ B);
+$$
+\begin{aligned}
+(A \mid B) &= (A \oplus B) + (A \mathbin{\&} B) \\
+(A \oplus B) &= (A \mathbin{\&} B) \oplus (A \mid B) \\
+\\
+(A \oplus (A \mathbin{\&} B)) &= ((A \mid B) \oplus B) \\
+&= (A \mathbin{\&} \sim B) \\
+\\
+(A \oplus (A \mid B)) &= ((A \mathbin{\&} B) \oplus B) \\
+&= (B \mathbin{\&} \sim A) \\
+\\
+(A + B) &= (A \oplus B) + 2(A \mathbin{\&} B) \\
+&= (A \mid B) + (A \mathbin{\&} B) \\
+\\
+(A - B) &= (A \oplus (A \mathbin{\&} B)) - (A \oplus (A \mid B)) \\
+&= ((A \mid B) \oplus B) - (A \oplus (A \mid B)) \\
+&= (A \oplus (A \mathbin{\&} B)) - ((A \mathbin{\&} B) \oplus B) \\
+&= ((A \mid B) \oplus B) - ((A \mathbin{\&} B) \oplus B)
+\end{aligned}
+$$
 ---
 
 # **Tips:**
