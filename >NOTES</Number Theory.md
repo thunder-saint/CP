@@ -28,11 +28,12 @@
 
 - for the divisors of N, d:
     - ∑ φ(d) = N   [for d | N];
-    - ∑ GCD(i, N) = ∑ d * (φ / d)   [from i = 1, ..., N];
+    - ∑ GCD(i, N) = ∑ d * φ(N / d)   [from i = 1, ..., N];
 
 - if GCD(a, n) = 1, then:
     - (1 / a) % n = a^(φ(n) - 1) % n;
     - φ(a * n) = φ(a) * φ(n);
+    - (a^(φ(n))) % n = 1;
 
 ---
 
