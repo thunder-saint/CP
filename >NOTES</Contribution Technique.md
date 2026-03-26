@@ -3,7 +3,7 @@
 - Sum of Subarray Sums                   : ∑(ai* i * (n-i+1)) [from i=1...n]
 - Sum of Subset Sums                     : ∑(2^(n-1) * ai) [from i=1...n]
 - Sum of Max-Min over all Subsets        : ∑(∑((aj-ai) * 2^(j-i-1)) [from j=i+1...n]) [from i=1...n]
-- Sum of Sum X Length over all Subarrays : ∑(ai X (i X ∑i [from i=i...n] - (n-i+1) X ∑i [from i=1...i] + i X (n-i+1)) [from i=1...n]
+- Sum of Sum * Length over all Subarrays : ∑(ai * (i * ∑i [from i=i...n] - (n-i+1) * ∑i [from i=1...i] + i * (n-i+1)) [from i=1...n]
 - Sum of Product of all Subsequences     : (∏(ai+1)) - 1 [from i=1...n]
 ---
 # **PRODUCT**:
