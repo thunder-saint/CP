@@ -1,9 +1,9 @@
 # Fermat’s Little Theorem
 
-- if p is prime
+- if p is prime and a % p != 0 :
     - (a^n) % p = (a^(n%(p-1))) % p;
     - (1/a) % p = (a^(p-2)) % p;
-    - a % p != 0, then : (a ^ (p-1)) % p = 1;
+    - (a ^ (p-1)) % p = 1;
 
 ---
 
