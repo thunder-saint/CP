@@ -40,6 +40,7 @@
 # Others
 
 - if (a - b) % m = 0 then: a % m = b % m;
+- the number of positive divisors of 𝑝^𝑒 that are divisible by 𝑝^𝑎 is: e - a + 1
 
 - Product of divisors of N = N^(NOD / 2);
 
