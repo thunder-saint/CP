@@ -1,4 +1,4 @@
-vector<int> compress(vector<int> a) {
+vector<int> compress(vector<int> &a) {
     vector<int> v = a;
 
     sort(v.begin(), v.end());
