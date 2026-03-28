@@ -2,8 +2,8 @@
 - if (a*b)<=n then a<=(n/b).
 ---
 # **Pigeonhole Principle:**
-- in any array of N positive integers, there exists a non-empty contiguous subarray whose sum is divisible by N.
 - if N+1 objects are put into N boxes, then at least one box contains 2 or more objects.
+- in any array of N positive integers, there exists a non-empty contiguous subarray whose sum is divisible by N.
 ---
 
 # **Special Number Series:**
