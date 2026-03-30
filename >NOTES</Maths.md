@@ -14,6 +14,10 @@
 - for any pair (x, y) a target sum S is reachable with exactly one change with [1,k] if it falls in the range [min(x, y)+1, max(x, y)+k].
 ---
 
+# **Things Related to odd-even:**
+- Use the "least even" logic only as a last resort to break a perfectly balanced, even-sum array.
+---
+
 # **Statistical Optimization:**
 - Median minimizes the sum of absolute deviations.
 ---
