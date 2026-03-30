@@ -10,7 +10,7 @@
 - The (n+2)th fibonacci number counts binary sequences of length n with no consecutive 1s (equivalently, no consecutive 0s).
 ---
 
-# **Things Related to Ranges**
+# **Things Related to Ranges:**
 - for any pair (x, y) a target sum S is reachable with exactly one change with [1,k] if it falls in the range [min(x, y)+1, max(x, y)+k].
 ---
 
