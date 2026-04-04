@@ -21,3 +21,5 @@
 # **Statistical Optimization:**
 - Median minimizes the sum of absolute deviations.
 ---
+# **Others:**
+- The k-th positive number n with digital root x is given by: n = x + 9*(k - 1).
