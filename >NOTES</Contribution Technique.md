@@ -5,6 +5,7 @@
 - Sum of Max-Min over all Subsets        : ∑(∑((aj-ai) * 2^(j-i-1)) [from j=i+1...n]) [from i=1...n]
 - Sum of Sum * Length over all Subarrays : ∑(ai * (i * ∑i [from i=i...n] - (n-i+1) * ∑i [from i=1...i] + i * (n-i+1)) [from i=1...n]
 - Sum of Product of all Subsequences     : (∏(ai+1)) - 1 [from i=1...n]
+- Sum of product of pairs                : ((∑ai)^2 - ∑(ai^2))/2 [from i=1...n]
 ---
 # **PRODUCT**:
 - Product of Pair Products:  ∏(ai ^ (2n)) [from i=1...n];
