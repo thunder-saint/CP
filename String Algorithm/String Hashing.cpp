@@ -54,4 +54,4 @@ struct Hashing {
         hs.second = 1LL * hs.second * ipw[i].second % mod2;
         return hs;
     }
-} S, R;
+};
