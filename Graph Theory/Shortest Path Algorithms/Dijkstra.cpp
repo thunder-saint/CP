@@ -1,1 +1,34 @@
-
+#define pi pair<int,int>
+const int N = 1e5 + 1;
+vector <pi> g[N];
+int dist[N], par[N], cnt[N], mn[N], mx[N];
+void dijkstra(int source, int n) {
+    priority_queue<pi,vector<pi>,greater<pi>>pq;
+    for(int i=1; i<=n; i++) {
+        dist[i] = LLONG_MAX;
+        cnt[i] = par[i] = 0;
+        mn[i] = LLONG_MAX, mx[i] = -LLONG_MAX;
+    }
+    dist[source] = mn[source] = mx[source] = 0;
+    cnt[source] = 1;
+    pq.push({0, source});
+    while(!pq.empty()) {
+        auto [d,u] = pq.top(); 
+        pq.pop();
+        if(d > dist[u]) continue;
+        for(auto &[v,w] : g[u]) {
+            if(dist[u] + w < dist[v]) {
+                dist[v] = dist[u] + w;
+                par[v] = u, cnt[v] = cnt[u];
+                mn[v] = mn[u] + 1;
+                mx[v] = mx[u] + 1;
+                pq.push({dist[v], v}); 
+            }
+            else if(dist[u] + w == dist[v]) {
+                cnt[v] = (cnt[v] + cnt[u]) % MOD;
+                mn[v] = min(mn[v], mn[u] + 1);
+                mx[v] = max(mx[v], mx[u] + 1);
+            }
+        }
+    } 
+}
