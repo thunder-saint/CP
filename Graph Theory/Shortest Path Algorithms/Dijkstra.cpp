@@ -5,9 +5,8 @@ int dist[N], par[N], cnt[N], mn[N], mx[N];
 void dijkstra(int source, int n) {
     priority_queue<pi,vector<pi>,greater<pi>>pq;
     for(int i=1; i<=n; i++) {
-        dist[i] = LLONG_MAX;
-        cnt[i] = par[i] = 0;
-        mn[i] = LLONG_MAX, mx[i] = -LLONG_MAX;
+        dist[i] = mn[i] = LLONG_MAX;
+        cnt[i] = par[i] = mx[i] = 0;
     }
     dist[source] = mn[source] = mx[source] = 0;
     cnt[source] = 1;
