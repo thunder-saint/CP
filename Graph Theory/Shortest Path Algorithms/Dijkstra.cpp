@@ -18,16 +18,35 @@ void dijkstra(int source, int n) {
         for(auto &[v,w] : g[u]) {
             if(dist[u] + w < dist[v]) {
                 dist[v] = dist[u] + w;
-                par[v] = u, cnt[v] = cnt[u];
-                mn[v] = mn[u] + 1;
-                mx[v] = mx[u] + 1;
+                par[v] = u;
                 pq.push({dist[v], v}); 
-            }
-            else if(dist[u] + w == dist[v]) {
-                cnt[v] = (cnt[v] + cnt[u]) % MOD;
-                mn[v] = min(mn[v], mn[u] + 1);
-                mx[v] = max(mx[v], mx[u] + 1);
             }
         }
     } 
+    // extra
+    vector<vector<int>> dag(n + 1);
+    vector<int> in(n + 1, 0);
+     for (int u = 1; u <= n; u++) {
+        if (dist[u] == LLONG_MAX) continue;
+        for (auto &[v, w] : g[u]) {
+            if (dist[u] + w == dist[v]) {
+                dag[u].push_back(v), in[v]++;
+            }
+        }
+    }
+    queue<int> q;
+    for (int i = 1; i <= n; i++) {
+        if (dist[i] < LLONG_MAX && !in[i]) q.push(i);
+    }
+    while (!q.empty()) {
+        int u = q.front(); q.pop();
+        for (int &v : dag[u]) {
+            if (cnt[u] && mn[u] != LLONG_MAX) { 
+                cnt[v] = (cnt[v] + cnt[u]) % MOD;
+                mn[v]  = min(mn[v], mn[u] + 1);
+                mx[v]  = max(mx[v], mx[u] + 1);
+            }
+            if (--in[v] == 0) q.push(v);
+        }
+    }
 }
