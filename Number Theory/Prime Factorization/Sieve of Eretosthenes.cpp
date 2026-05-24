@@ -6,7 +6,7 @@ void sieve() {
     prime[0] = prime[1] = 0;
     for (int i = 2; i * i <= MAX_N; i++) {
         if (prime[i]) {
-            for (int j = p * p; j <= MAX_N; j += p) {
+            for (int j = i * i; j <= MAX_N; j += i) {
                 prime[j] = 0;
             }
         }
