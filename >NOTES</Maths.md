@@ -11,7 +11,8 @@
 - gcd(a,b) = gcd(a-b, b) = gcd(a%b, b) : where a >= b;
 - if g = gcd(a,b) then, gcd(a/g, b/g) = 1;
 - if a1 and a2 are coprime, then: gcd(a1*a2, b) = gcd(a1, b) * gcd(a2 * b);
-- gcd(a, lcm(b,c)) = lcm(gcd(a,b), gcd(a,c)); 
+- gcd(a, lcm(b,c)) = lcm(gcd(a,b), gcd(a,c));
+- gcd of arithmetic progression: gcd(a, d);
 
 # **Special Number Series:**
 - The (n+2)th fibonacci number counts binary sequences of length n with no consecutive 1s (equivalently, no consecutive 0s).
