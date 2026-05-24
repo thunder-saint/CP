@@ -9,7 +9,8 @@ void sieve() {
             for (int j = i * i; j <= MAX_N; j += i) prime[j] = 0;
         }
     }
-    for(int i=2; i<= MAX_N; i++) {
+    p.push_back(2);
+    for(int i=3; i<= MAX_N; i+=2) {
      if(prime[i]) p.push_back(i);
     }
 }
