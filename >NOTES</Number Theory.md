@@ -13,6 +13,7 @@
 - (A * B) % M = ((A % M) * (B % M)) % M;
 - (A - B) % M = ((A % M) - (B % M) + M) % M;
 - (A / B) % M = ((A % M) * ((B^-1) % M)) % M;
+- if (a - b) % m = 0 then: a % m = b % m;
 
 ---
 
@@ -37,11 +38,14 @@
 
 ---
 
-# Others
+# Prime Divisors Related
 
-- if (a - b) % m = 0 then: a % m = b % m;
 - the number of positive divisors of 𝑝^𝑒 that are divisible by 𝑝^𝑎 is: e - a + 1
 
 - Product of divisors of N = N^(NOD / 2);
 
 - if a = ∏(Pi^ei), b = ∏(Pi^fi) and ∏(Pi^(ei % 2)) = ∏(Pi^(fi % 2)) then: a * b is a perfect square;
+
+- every even integer n>2 can be written as the sum of two primes;
+---
+
