@@ -11,7 +11,7 @@ void sieve() {
             }
         }
     }
-    for(int i=2; i< MAX_N; i++) {
+    for(int i=2; i<= MAX_N; i++) {
      if(prime[i]) p.push_back(i);
     }
 }
