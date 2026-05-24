@@ -17,6 +17,24 @@
 
 ---
 
+# Conjectures:
+
+- every even integer n>2 can be written as the sum of two primes;
+  
+- there is always at least 1 prime between n^2 and (n+1)^2 for any integer n>=1;
+  
+---
+
+# Prime Divisors Related
+
+- the number of positive divisors of 𝑝^𝑒 that are divisible by 𝑝^𝑎 is: e - a + 1
+
+- Product of divisors of N = N^(NOD / 2);
+
+- if a = ∏(Pi^ei), b = ∏(Pi^fi) and ∏(Pi^(ei % 2)) = ∏(Pi^(fi % 2)) then: a * b is a perfect square;
+
+---
+
 # Euler’s Totient Related
 
 - φ(n) = n ∏ (1 - 1/Pi)  [from i = 1, 2, .., k and Pi: distinct prime factors of n];
@@ -36,16 +54,5 @@
     - φ(a * n) = φ(a) * φ(n);
     - (a^(φ(n))) % n = 1;
 
----
-
-# Prime Divisors Related
-
-- the number of positive divisors of 𝑝^𝑒 that are divisible by 𝑝^𝑎 is: e - a + 1
-
-- Product of divisors of N = N^(NOD / 2);
-
-- if a = ∏(Pi^ei), b = ∏(Pi^fi) and ∏(Pi^(ei % 2)) = ∏(Pi^(fi % 2)) then: a * b is a perfect square;
-
-- every even integer n>2 can be written as the sum of two primes;
 ---
 
