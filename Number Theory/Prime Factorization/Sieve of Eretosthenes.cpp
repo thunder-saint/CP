@@ -4,10 +4,10 @@ vector <int> p;
 void sieve() {
     prime.set();
     prime[0] = prime[1] = 0;
-    for (int p = 2; p * p <= MAX_N; p++) {
-        if (prime[p]) {
-            for (int i = p * p; i <= MAX_N; i += p) {
-                prime[i] = 0;
+    for (int i = 2; i * i <= MAX_N; i++) {
+        if (prime[i]) {
+            for (int j = p * p; j <= MAX_N; j += p) {
+                prime[j] = 0;
             }
         }
     }
