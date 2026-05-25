@@ -7,7 +7,7 @@ void dijkstra(int s, int n) {
     priority_queue<pi,vector<pi>,greater<pi>>pq;
     for (int i = 1; i <= n; i++) {
         d[i] = mn[i] = inf;
-        c[i] = p[i] = mx[i] = 0;
+        c[i] = mx[i] = 0, p[i] = -1;
     }
     d[s] = mn[s] = mx[s] = 0;
     c[s] = 1;
