@@ -17,7 +17,7 @@ void bellman_ford(int s, int n) {
         if (!updated) break; 
     }
     int x = -1;
-    for (int i = 1; i < n; i++) {
+    for (int i = 1; i <= n; i++) {
         for (auto &[u, v, w] : e) {
             if (d[u] < inf && (d[u] == -inf || d[u] + w < d[v])){
                 d[v] = -inf, x = v, Neg = true;
