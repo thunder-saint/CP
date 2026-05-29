@@ -1,5 +1,5 @@
 #define pi pair<int, int>
-const int N = 1e5 + 1;
+const int N = 5e5 + 1;
 const int inf = 1e18+1;
 vector<pi> g[N];
 int d[N], p[N], c[N], mn[N], mx[N];
