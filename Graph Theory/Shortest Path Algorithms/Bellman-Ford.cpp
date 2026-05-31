@@ -1,16 +1,16 @@
-const int INF = 1e18;
+const int inf = 1e18;
 vector <tuple<int,int,int>> e;
 vector<long long> d, p, nc; 
 bool neg = false;
 void bellman_ford(int s, int n, bool fl) {
-    d.assign(n + 1, fl ? 0 : INF);
+    d.assign(n + 1, fl ? 0 : inf);
     p.assign(n + 1, -1), nc.clear();
     neg = false, d[s] = 0; 
     int l = -1;
     for (int i = 1; i <= n; ++i) {
         l = -1;
         for (auto &[u, v, w]  : e) {
-            if (d[u] < INF && d[u] + w < d[v]) {
+            if (d[u] < inf && d[u] + w < d[v]) {
                 d[v] = d[u] + w, p[v] = u, l = v;
             }
         }
@@ -23,8 +23,8 @@ void bellman_ford(int s, int n, bool fl) {
     nc.push_back(l), reverse(all(nc));
     for (int i = 1; i <= n; ++i) {
         for (auto &[u,v,w] : e) {
-            if (d[u] < INF) {
-                if (d[u] == -INF || d[u] + w < d[v]) d[v] = -INF;
+            if (d[u] < inf) {
+                if (d[u] == -inf || d[u] + w < d[v]) d[v] = -inf;
             }
         }
     }
