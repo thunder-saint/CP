@@ -16,6 +16,7 @@ struct DSU {
             if (p[x] != p[p[x]]) {
                 xp[x] += xp[p[x]];
                 dist[x] += dist[p[x]];
+                // add here;
             }
             p[x] = p[p[x]], x = p[x];      
         }
@@ -36,6 +37,7 @@ struct DSU {
         mn[ru] = min(mn[ru], mn[rv]);
         mx[ru] = max(mx[ru], mx[rv]);
         xp[rv] -= xp[ru]; 
+         // add here;
         M = max(M, (long long)sz[ru]);
     }
     void union_directed(int subordinate, int boss) {
