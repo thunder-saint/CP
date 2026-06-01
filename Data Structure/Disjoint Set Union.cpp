@@ -68,7 +68,7 @@ struct DSU {
     // int get(int x) {
     //     find(x); 
     //     int total = 0;
-    //     while (x != any[x]) total += any[x], x = p[x];
+    //     while (x != p[x]) total += any[x], x = p[x];
     //     return total + any[x];
     //     [any = xp, dist, col;]
     // }
