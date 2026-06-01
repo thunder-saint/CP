@@ -62,16 +62,13 @@ struct DSU {
             curr = next_node;
         }
     }
-    int get_xp(int x) {
-        find(x); 
-        int total = 0;
-        while (x != p[x]) total += xp[x], x = p[x];
-        return total + xp[x];
-    }
-    int get_depth(int x) {
-        find(x);
-        int total = 0;
-        while (x != p[x]) total += dist[x], x = p[x];
-        return total + dist[x];
-    }
+    // get what ever you want
+    // int get(int x) {
+    //     find(x); 
+    //     int total = 0;
+    //     while (x != any[x]) total += any[x], x = p[x];
+    //     return total + any[x];
+    //     [any = xp, dist, col;]
+    // }
+
 };
