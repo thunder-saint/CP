@@ -1,26 +1,33 @@
 struct DSU {
-    vector<int> p, sz, mn, mx, xp, nxt; 
-    int components, M = LLONG_MIN;
+    vector<int> p, sz, mn, mx, xp, nxt, dist; 
+    int components, M = 1;
     DSU(int n) {
-        components = n;
-        p.resize(n + 1), sz.assign(n + 1, 1);
-        mn.resize(n + 1), mx.resize(n + 1);
-        xp.assign(n + 1, 0), nxt.resize(n + 2); 
-        for(int i = 0; i <= n; i++) {
+        components = n; 
+        p.resize(n + 2), sz.assign(n + 2, 1);
+        mn.resize(n + 2), mx.resize(n + 2);
+        xp.assign(n + 2, 0), nxt.resize(n + 2); 
+        dist.assign(n + 2, 0);
+        for(int i = 0; i <= n + 1; i++) {
             p[i] = mn[i] = mx[i] = nxt[i] = i;
         }
-        nxt[n + 1] = n + 1;
     }
     int find(int x) {
         while (x != p[x]) {
             if (p[x] != p[p[x]]) {
                 xp[x] += xp[p[x]];
+                dist[x] += dist[p[x]];
             }
             p[x] = p[p[x]], x = p[x];      
         }
         return x;
     }
-    void Union (int u, int v) {
+    int find_nxt(int x) {
+        while (x != nxt[x]) {
+            nxt[x] = nxt[nxt[x]], x = nxt[x];
+        }
+        return x;
+    }
+    void Union(int u, int v) {
         int ru = find(u), rv = find(v);
         if (ru == rv) return;
         components--;
@@ -29,21 +36,21 @@ struct DSU {
         mn[ru] = min(mn[ru], mn[rv]);
         mx[ru] = max(mx[ru], mx[rv]);
         xp[rv] -= xp[ru]; 
-        M = max(M, sz[ru]);
+        M = max(M, (long long)sz[ru]);
     }
-    int get_xp(int x) {
-        int total = 0;
-        while (x != p[x]) {
-            total += xp[x], x = p[x];
+    void union_directed(int subordinate, int boss) {
+        int root_sub = find(subordinate);
+        int root_boss = find(boss);
+        if (root_sub != root_boss) {
+            components--; 
+            p[root_sub] = root_boss;
+            dist[root_sub] = 1;
+            sz[root_boss] += sz[root_sub];
+            mn[root_boss] = min(mn[root_boss], mn[root_sub]);
+            mx[root_boss] = max(mx[root_boss], mx[root_sub]);
+            xp[root_sub] -= xp[root_boss]; 
+            M = max(M, sz[root_boss]);
         }
-        total += xp[x];
-        return total;
-    }
-    int find_nxt(int x) {
-        while (x != nxt[x]) {
-            nxt[x] = nxt[nxt[x]], x = nxt[x];
-        }
-        return x;
     }
     void union_range(int L, int R) {
         if (L > R) swap(L, R);
@@ -54,5 +61,17 @@ struct DSU {
             nxt[curr] = next_node; 
             curr = next_node;
         }
+    }
+    int get_xp(int x) {
+        find(x); 
+        int total = 0;
+        while (x != p[x]) total += xp[x], x = p[x];
+        return total + xp[x];
+    }
+    int get_depth(int x) {
+        find(x);
+        int total = 0;
+        while (x != p[x]) total += dist[x], x = p[x];
+        return total + dist[x];
     }
 };
