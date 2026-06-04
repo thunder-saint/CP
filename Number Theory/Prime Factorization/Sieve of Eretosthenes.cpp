@@ -14,3 +14,20 @@ void sieve() {
      if(prime[i]) p.push_back(i);
     }
 }
+vector <int> segmented_sieve(int l, int r) {
+    if(l == 1) l++;
+    int lmt = sqrt(r);
+    while(lmt * lmt <= r) lmt++;
+    while(lmt * lmt > r) lmt--;
+    vector <int> v;
+    vector <bool> isPrime(r - l + 1, true);
+    for(auto &a : p) {
+        if(a > lmt) break;
+        int start = max(a * a, ((l + a - 1) / a) * a);
+        for(int i = start; i <= r; i += a) isPrime[i - l] = false;
+    }
+    for(int i = l; i <= r; i++) {
+        if(isPrime[i - l]) v.push_back(i);
+    }
+    return v;
+}
