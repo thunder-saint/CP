@@ -14,7 +14,7 @@
 - (A - B) % M = ((A % M) - (B % M) + M) % M;
 - (A / B) % M = ((A % M) * ((B^-1) % M)) % M;
 - if (a - b) % m = 0 then: a % m = b % m;
-
+- n % x retunrs n or p < (n +1) / 2;
 ---
 
 # Conjectures:
