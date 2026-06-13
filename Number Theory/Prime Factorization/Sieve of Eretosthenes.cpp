@@ -1,17 +1,30 @@
-const int MAX_N = 100000000; 
-bitset<MAX_N + 1> prime;
-vector <int> p;
+const int32_t MX = 1e8, N = 1e7;
+bitset<MX + 1> isprime;
+int32_t spf[N + 1], phi[N + 1];
+vector<int32_t> primes;
 void sieve() {
-    prime.set();
-    prime[0] = prime[1] = 0;
-    for (int i = 2; i * i <= MAX_N; i++) {
-        if (prime[i]) {
-            for (int j = i * i; j <= MAX_N; j += i) prime[j] = 0;
+    primes.reserve(5761455); 
+    isprime.set(), phi[1] = 1;
+    isprime[0] = isprime[1] = 0;
+    for (int i = 2; i <= MX; i++) {
+        if (isprime[i]) {
+            primes.push_back(i);
+            if (i <= N) {
+                spf[i] = i, phi[i] = i - 1;
+            }
         }
-    }
-    p.push_back(2);
-    for(int i=3; i<= MAX_N; i+=2) {
-     if(prime[i]) p.push_back(i);
+        for (int j = 0; j < primes.size(); j++) {
+            int nxt = i * primes[j]; 
+            if (nxt > MX) break;
+            isprime[nxt] = 0;
+            if (nxt <= N) {
+                spf[nxt] = primes[j];
+                phi[nxt] = (i % primes[j] == 0)
+                    ? phi[i] * primes[j]
+                    : phi[i] * (primes[j] - 1);
+            }
+            if (i % primes[j] == 0) break;
+        }
     }
 }
 vector <int> segmented_sieve(int l, int r) {
@@ -21,9 +34,9 @@ vector <int> segmented_sieve(int l, int r) {
     while(lmt * lmt > r) lmt--;
     vector <int> v;
     vector <bool> isPrime(r - l + 1, true);
-    for(auto &a : p) {
+    for(auto &a : primes) {
         if(a > lmt) break;
-        int start = max(a * a, ((l + a - 1) / a) * a);
+        int start = max((int)a * a, ((l + a - 1) / a) * a);
         for(int i = start; i <= r; i += a) isPrime[i - l] = false;
     }
     for(int i = l; i <= r; i++) {
