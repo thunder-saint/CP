@@ -56,3 +56,7 @@
 
 ---
 
+# Random Theorem
+- for two positive integers a and b where GCD(a, b) = 1 (using only addition / non-negative multipliers):
+    - largest Impossible Sum: ab - a - b
+    - total Number of Impossible Sums: (a - 1)(b - 1) / 2;
