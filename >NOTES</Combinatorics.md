@@ -20,4 +20,5 @@
 # **Binomial Theorem:** 
 - (a+b)^n = Σ(nCk)*a^(n-k)*b^k [from k=0,1,..,n];
 - Σ(nCk) = 2^n [from k=0,1,..,n];;
-
+# **Others:**
+- (NCR) % mod  = ∏(ni c ri) % mod
