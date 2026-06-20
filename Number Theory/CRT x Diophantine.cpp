@@ -39,3 +39,11 @@ void invs(int mod) {
         inv[i] = mod - (mod / i) * inv[mod % i] % mod; 
     } 
 }
+bool Diophantine(int a, int b, int c, int &x0, int &y0, int &g) {
+    g = extGCD(abs(a), abs(b), x0, y0);
+    if (c % g != 0) return false;
+    x0 *= c / g, y0 *= c / g;
+    if (a < 0) x0 = -x0;
+    if (b < 0) y0 = -y0;
+    return true;
+}
