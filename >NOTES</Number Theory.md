@@ -56,6 +56,14 @@
 
 ---
 
+# Mobius Function
+- Counting Pairs with gcd(x,y)=k  ∑ μ(d)⌊N / kd​⌋⌊M / kd​ ⌋ d = 1 ... min(n/d, m/d)
+- Counting Coprime k-tuples ∑​ μ(d)⌊n / d​⌋^k.
+- Number of squarefree integers ≤N:  ∑μ(i)⌊N / i^2] , i upto sqrt(n)
+​
+---
+
+
 # Random Theorem
 - for two positive integers a and b where GCD(a, b) = 1 (using only addition / non-negative multipliers):
     - largest Impossible Sum: ab - a - b
