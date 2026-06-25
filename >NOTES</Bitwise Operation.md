@@ -12,6 +12,7 @@
 - Submusk: (x & y) == y;
 - Clear LSB upto kth bit : ( x & ~((1 << (k + 1)) - 1));
 - Clear MSB upto kth bit : ( x & ((1 << (k + 1)) - 1));
+- Gary code : x ⊕ (x >> 1LL);
 ---
 
 # **Power of 2:**
