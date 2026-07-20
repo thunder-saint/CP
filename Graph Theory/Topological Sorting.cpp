@@ -16,6 +16,6 @@ vector<int> Topological_sort(int n) {
             if (--indeg[v] == 0) q.push(v);
         }
     }
-    if (ans.size() != n) return {};
+    if ((int)ans.size() != n) return {};
     return ans;
 }
