@@ -1,6 +1,7 @@
 const int N = 1e5 + 1;
 vector<int> g[N];
-int up[N][30];
+const int LOG = 30;
+int up[N][LOG];
 bool vis[N], leaf[N];
 int depth[N], subtree_sz[N], height[N];
 int tin[N], tout[N], par[N];
@@ -11,7 +12,7 @@ void dfs(int u, int p ) {
     height[u] = 0;  
     subtree_sz[u] = 1;
     par[u] = up[u][0] = p;
-    for (int i = 1; i < 30; i++) {
+    for (int i = 1; i < LOG; i++) {
             up[u][i] = up[up[u][i - 1]][i - 1];
         }
     for (auto &v : g[u]) {
