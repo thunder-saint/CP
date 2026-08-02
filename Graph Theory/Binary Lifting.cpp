@@ -1,4 +1,11 @@
 struct BinaryLifting {
+    void build(int n) {
+        for (int i = 1; i < LOG; i++) {
+            for (int u = 1; u <= n; u++) {
+                up[u][i] = up[up[u][i - 1]][i - 1];
+            }
+        }
+    }
     bool ancestor(int u, int v) {
         return tin[u] <= tin[v] && tout[u] >= tout[v];
     }
