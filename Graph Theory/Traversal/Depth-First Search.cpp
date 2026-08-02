@@ -1,6 +1,6 @@
 const int N = 1e5 + 1;
 vector<int> g[N];
-const int LOG = 30;
+const int LOG = 31;
 int up[N][LOG];
 bool vis[N], leaf[N];
 int depth[N], subtree_sz[N], height[N];
