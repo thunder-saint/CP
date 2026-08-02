@@ -9,12 +9,8 @@ int timer = 0;
 void dfs(int u, int p ) {
     tin[u] = ++timer; 
     vis[u] = leaf[u] = true;
-    height[u] = 0;  
-    subtree_sz[u] = 1;
+    height[u] = 0, subtree_sz[u] = 1;
     par[u] = up[u][0] = p;
-    for (int i = 1; i < LOG; i++) {
-            up[u][i] = up[up[u][i - 1]][i - 1];
-        }
     for (auto &v : g[u]) {
         if(v == p) continue;
         if (!vis[v]) {
