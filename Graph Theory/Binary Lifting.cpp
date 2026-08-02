@@ -29,6 +29,7 @@ struct BinaryLifting {
         return u;
     }
     int k_node(int u, int v, int k) {
+        k--;
         int l = lca(u, v);
         int d = depth[u] + depth[v] - (depth[l] << 1);
         if (k > d) return -1; 
