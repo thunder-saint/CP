@@ -1,77 +1,66 @@
 struct DSU {
-    vector<int> p, sz, mn, mx, xp, nxt, dist; 
-    int components, M = 1;
+    vector<int> p, sz, add, dist, col, nxt, mn, mx;
+    int components;
     DSU(int n) {
-        components = n; 
-        p.resize(n + 2), sz.assign(n + 2, 1);
-        mn.resize(n + 2), mx.resize(n + 2);
-        xp.assign(n + 2, 0), nxt.resize(n + 2); 
-        dist.assign(n + 2, 0);
-        for(int i = 0; i <= n + 1; i++) {
-            p[i] = mn[i] = mx[i] = nxt[i] = i;
+        components = n;
+        p.resize(n + 2); sz.assign(n + 2, 1);
+        dist.assign(n + 2, 0); col.assign(n + 2, 0);
+        add.assign(n + 2, 0); nxt.resize(n + 2);
+        mn.resize(n + 2); mx.resize(n + 2);
+        for (int i = 0; i <= n + 1; i++) {
+            p[i] = nxt[i] = mn[i] = mx[i] = i;
         }
     }
     int find(int x) {
         while (x != p[x]) {
             if (p[x] != p[p[x]]) {
-                xp[x] += xp[p[x]];
                 dist[x] += dist[p[x]];
-                // add here;
+                col[x]  ^= col[p[x]];
+                add[x]  += add[p[x]];
             }
-            p[x] = p[p[x]], x = p[x];      
+            p[x] = p[p[x]], x = p[x];
         }
         return x;
     }
-    int find_nxt(int x) {
-        while (x != nxt[x]) {
-            nxt[x] = nxt[nxt[x]], x = nxt[x];
+    tuple<int, int, long long> getVal(int x) {
+        find(x);
+        int tCol = 0, tDist = 0; long long tAdd = 0;
+        while (x != p[x]) {
+            tCol  ^= col[x];
+            tDist += dist[x];
+            tAdd  += add[x];
+            x = p[x];
         }
-        return x;
+        tAdd += add[x];
+        return {tCol, tDist, tAdd};
     }
-    void Union(int u, int v) {
+    void Union(int u, int v, bool dir = false, int w = 1) {
+        auto [cu, du, au] = getVal(u);
+        auto [cv, dv, av] = getVal(v);
         int ru = find(u), rv = find(v);
         if (ru == rv) return;
+        if (!dir && sz[ru] > sz[rv]) swap(ru, rv), swap(du, dv);
+        p[ru] = rv, sz[rv] += sz[ru];
+        add[ru] -= add[rv];
+        if (dir) dist[ru] = w;
+        else dist[ru] = w + dv - du;
+        col[ru] = 1 ^ cu ^ cv;
+        mn[rv] = min(mn[rv], mn[ru]);
+        mx[rv] = max(mx[rv], mx[ru]);
         components--;
-        if (sz[ru] < sz[rv]) swap(ru, rv);
-        // col[rv] = 1 ^ get(u) ^ get(v);
-        p[rv] = ru, sz[ru] += sz[rv];
-        mn[ru] = min(mn[ru], mn[rv]);
-        mx[ru] = max(mx[ru], mx[rv]);
-        xp[rv] -= xp[ru]; 
-         // add here;
-        M = max(M, (long long)sz[ru]);
     }
-    void union_directed(int subordinate, int boss) {
-        int root_sub = find(subordinate);
-        int root_boss = find(boss);
-        if (root_sub != root_boss) {
-            components--; 
-            p[root_sub] = root_boss;
-            dist[root_sub] = 1;
-            sz[root_boss] += sz[root_sub];
-            mn[root_boss] = min(mn[root_boss], mn[root_sub]);
-            mx[root_boss] = max(mx[root_boss], mx[root_sub]);
-            xp[root_sub] -= xp[root_boss]; 
-            M = max(M, sz[root_boss]);
-        }
+    int find_nxt(int x) {
+        while (x != nxt[x]) nxt[x] = nxt[nxt[x]], x = nxt[x];
+        return x;
     }
     void union_range(int L, int R) {
         if (L > R) swap(L, R);
-        int curr = find_nxt(L); 
+        int curr = find_nxt(L);
         while (curr < R) {
-            int next_node = find_nxt(curr + 1); 
+            int next_node = find_nxt(curr + 1);
             Union(curr, next_node);
-            nxt[curr] = next_node; 
+            nxt[curr] = next_node;
             curr = next_node;
         }
     }
-    // get what ever you want
-    // int get(int x) {
-    //     find(x); 
-    //     int total = 0;
-    //     while (x != p[x]) total += any[x], x = p[x];
-    //     return total + any[x];
-    //     [any = xp, dist, col;]
-    // }
-
 };
