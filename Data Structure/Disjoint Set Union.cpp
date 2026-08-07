@@ -33,6 +33,7 @@ struct DSU {
         if (ru == rv) return;
         components--;
         if (sz[ru] < sz[rv]) swap(ru, rv);
+        // col[rv] = 1 ^ get(u) ^ get(v);
         p[rv] = ru, sz[ru] += sz[rv];
         mn[ru] = min(mn[ru], mn[rv]);
         mx[ru] = max(mx[ru], mx[rv]);
