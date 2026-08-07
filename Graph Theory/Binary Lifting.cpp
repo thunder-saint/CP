@@ -18,6 +18,11 @@ struct BinaryLifting {
         }
         return up[u][0];
     }
+    int dynamic_lca(int r, int u, int v) {
+        int l1 = lca(r, u), l2 = lca(r, v), l3 = lca(u, v);
+        int x = max({depth[l1], depth[l2], depth[l3]});
+        return (x == depth[l1]) ? l1 : (x == depth[l2]) ? l2 : l3;
+    }
     int dist(int u, int v) {
         return depth[u] + depth[v] - 2 * depth[lca(u, v)];
     }
