@@ -1,13 +1,14 @@
 const int N = 1e5 + 1;
 vector<int> g[N];
 const int LOG = 31;
-int up[N][LOG];
+int up[N][LOG], par[N];
 bool vis[N], leaf[N];
 int depth[N], subtree_sz[N], height[N];
-int tin[N], tout[N], par[N];
+int tin[N], tout[N], flat_tree[N];
 int timer = 0;
 void dfs(int u, int p ) {
-    tin[u] = ++timer; 
+    flat_tree[timer] = u;
+    tin[u] = timer++; 
     vis[u] = leaf[u] = true;
     height[u] = 0, subtree_sz[u] = 1;
     par[u] = up[u][0] = p;
