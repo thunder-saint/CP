@@ -7,7 +7,8 @@ bool vis[N], leaf[N], in_stk[N];
 int depth[N], subtree_sz[N], height[N];
 int tin[N], tout[N], flat_tree[N];
 int low[N], comp_id[N];
-int timer = 0, scc_cnt = 0;
+int timer = 0, comp_cnt = 0;
+bool directed = false;
 void dfs(int u, int p ) {
     tin[u] = low[u] = ++timer;
     flat_tree[timer] = u;
@@ -16,6 +17,7 @@ void dfs(int u, int p ) {
     vis[u] = leaf[u] = in_stk[u] = true;
     stk.push_back(u);
     for (auto &v : g[u]) {
+        if (!directed && v == p) continue;
         if (!vis[v]) {
             leaf[u] = false; 
             depth[v] = depth[u] + 1;
@@ -30,13 +32,13 @@ void dfs(int u, int p ) {
     }
     tout[u] = timer;
     if (low[u] == tin[u]) {
-        scc_cnt++;
+        comp_cnt++;
         vector<int> scc;
         while (true) {
             int node = stk.back();
             stk.pop_back();
             in_stk[node] = false;
-            comp_id[node] = scc_cnt;
+            comp_id[node] = comp_cnt;
             scc.push_back(node);
             if (node == u) break;
         }
