@@ -21,7 +21,6 @@ void dfs(int u, int p) {
         if (v == p) continue; // BCC && 2ECC
         // use egde id for multiple edges
         if (!vis[v]) {
-            edge_stk.push_back({u, v}); // BCC
             leaf[u] = false; 
             depth[v] = depth[u] + 1;
             child++;
@@ -31,6 +30,7 @@ void dfs(int u, int p) {
             low[u] = min(low[u], low[v]);
 
             // --- BCC---
+            edge_stk.push_back({u, v});
             if (low[v] >= tin[u]) {
                 if (p != 0) cutpoint[u] = true;
                 bcc_cnt++;
