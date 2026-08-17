@@ -15,7 +15,7 @@ void dfs(int u, int p) {
     height[u] = 0, subtree_sz[u] = 1;
     par[u] = up[u][0] = p;
     vis[u] = leaf[u] = in_stk[u] = true;
-    stk.push_back(u);
+    stk.push_back(u);//SCC && 2ECC
     int child = 0; 
     for (auto &v : g[u]) {
         if (v == p) continue; // BCC && 2ECC
@@ -23,14 +23,13 @@ void dfs(int u, int p) {
         if (!vis[v]) {
             leaf[u] = false; 
             depth[v] = depth[u] + 1;
-            child++;
+            child++, edge_stk.push_back({u, v}); //BCC
             dfs(v, u);
             height[u] = max(height[u], height[v] + 1);
             subtree_sz[u] += subtree_sz[v];
-            low[u] = min(low[u], low[v]);
+            low[u] = min(low[u], low[v]); // all
 
             // --- BCC---
-            edge_stk.push_back({u, v});
             if (low[v] >= tin[u]) {
                 if (p != 0) cutpoint[u] = true;
                 bcc_cnt++;
