@@ -9,40 +9,47 @@ int depth[N], subtree_sz[N], height[N];
 int tin[N], tout[N], flat_tree[N];
 int low[N], comp_id[N];
 int timer = 0, comp_cnt = 0, bcc_cnt = 0;
+int seen_bcc[N]; 
+int current_seen = 0;
 void dfs(int u, int p) {
     tin[u] = low[u] = ++timer;
     flat_tree[timer] = u;
     height[u] = 0, subtree_sz[u] = 1;
     par[u] = up[u][0] = p;
     vis[u] = leaf[u] = in_stk[u] = true;
-    stk.push_back(u);//SCC && 2ECC
+    stk.push_back(u); // SCC && 2ECC
     int child = 0; 
     for (auto &v : g[u]) {
         if (v == p) continue; // BCC && 2ECC
-        // use egde id for multiple edges
+        // use edge id for multiple edges
         if (!vis[v]) {
             leaf[u] = false; 
             depth[v] = depth[u] + 1;
-            child++, edge_stk.push_back({u, v}); //BCC
+            child++, edge_stk.push_back({u, v}); // BCC
             dfs(v, u);
             height[u] = max(height[u], height[v] + 1);
             subtree_sz[u] += subtree_sz[v];
             low[u] = min(low[u], low[v]); // all
 
-            // --- BCC---
+            // --- BCC ---
             if (low[v] >= tin[u]) {
                 if (p != 0) cutpoint[u] = true;
                 bcc_cnt++;
+                current_seen++;
                 vector<int> bcc;
                 while (true) {
                     auto [f, s] = edge_stk.back();
                     edge_stk.pop_back();
-                    bcc.push_back(f);
-                    bcc.push_back(s);
+                    if (seen_bcc[f] != current_seen) {
+                        seen_bcc[f] = current_seen;
+                        bcc.push_back(f);
+                    }
+                    if (seen_bcc[s] != current_seen) {
+                        seen_bcc[s] = current_seen;
+                        bcc.push_back(s);
+                    }
                     if (f == u && s == v) break;
                 }
-                sort(all(bcc));
-                bcc.erase(unique(all(bcc)), bcc.end());
                 bccs.push_back(bcc);
             }
             // ----------------------------------------
@@ -52,13 +59,12 @@ void dfs(int u, int p) {
             if (tin[v] < tin[u]) {
                 edge_stk.push_back({u, v});
             }
-            // all
-            low[u] = min(low[u], tin[v]);
+            low[u] = min(low[u], tin[v]); //all
         }
     }
-    if (p == 0 && child > 1) cutpoint[u] = true; //BCC
+    if (p == 0 && child > 1) cutpoint[u] = true; // BCC
     tout[u] = timer;
-    
+
     // --- SCC && 2ECC ---
     if (low[u] == tin[u]) {
         comp_cnt++;
