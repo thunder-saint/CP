@@ -3,6 +3,8 @@ struct BinaryLifting {
         for (int i = 1; i < LOG; i++) {
             for (int u = 1; u <= n; u++) {
                 up[u][i] = up[up[u][i - 1]][i - 1];
+                // mn[u][i] = min(mn[u][i-1], mn[up[u][i - 1]][i - 1]);
+                // mx[u][i] = max(mx[u][i-1], mx[up[u][i - 1]][i - 1]);
             }
         }
     }
@@ -27,8 +29,13 @@ struct BinaryLifting {
         return depth[u] + depth[v] - 2 * depth[lca(u, v)];
     }
     int kth(int u, int k) {
+        // int cmx = -1, cmn = LLONG_MAX;
         for (int i = 0; i < LOG; i++) {
-            if ((k >> i) & 1) u = up[u][i];
+            if ((k >> i) & 1) {
+                // cmx = max(cmx, mx[u][i]);
+                // cmn = min(cmn, mn[u][i]);
+                u = up[u][i];
+            }
             if (u == 0) return 0;
         }
         return u;
