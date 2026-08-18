@@ -17,7 +17,7 @@ void dfs(int u, int p) {
     height[u] = 0, subtree_sz[u] = 1;
     par[u] = up[u][0] = p;
     vis[u] = leaf[u] = in_stk[u] = true;
-    stk.push_back(u); // SCC && 2ECC
+    stk.push_back(u);
     int child = 0; 
     for (auto &v : g[u]) {
         if (v == p) continue; // BCC && 2ECC
