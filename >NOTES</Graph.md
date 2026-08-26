@@ -1,5 +1,5 @@
-# Topological sorting#
-**the number of valid topological orderings: n! / (∏ sz(i)) i = 1,..., n**
+# Topological sorting #
+- the number of valid topological orderings: n! / (∏ sz(i)) i = 1,..., n
 ---
 # MST #
 - a node belongs to 
