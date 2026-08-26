@@ -80,3 +80,8 @@ void dfs(int u, int p) {
         comps.push_back(comp);
     }
 }
+
+/*
+    if(!vis[v]) dp[u] += dp[v];
+    else if(depth[u] > depth[v]) dp[u]++, dp[v]--;
+*/
