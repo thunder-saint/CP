@@ -35,7 +35,7 @@ struct Segment_Tree {
         pull(n);
     }
     int query(int n, int b, int e, int i, int j) {
-        if (b > j || e < i) return neut; 
+        if (b > j || e < i) return neut; // <--- CHANGE
         if (b >= i && e <= j) return t[n];
         int mid = (b + e) >> 1, l = n << 1, r = l | 1;
         return merge(query(l, b, mid, i, j), query(r, mid + 1, e, i, j));
