@@ -11,7 +11,7 @@ struct Segment_Tree {
     }
     void build(int n, int b, int e) {
         if (b == e) {
-            t[n] = a[b];
+            t[n] = a[b]; // do
             return;
         }
         int mid = (b + e) >> 1, l = n << 1, r = l | 1;
@@ -22,7 +22,7 @@ struct Segment_Tree {
     void update(int n, int b, int e, int i, int x) {
         if (b > i || e < i) return;
         if (b == e && b == i) {
-            t[n] = x;
+            t[n] = x; // do
             return;
         }
         int mid = (b + e) >> 1, l = n << 1, r = l | 1;
@@ -31,7 +31,7 @@ struct Segment_Tree {
         t[n] = merge(t[l], t[r]);
     }
     int query(int n, int b, int e, int i, int j) {
-        if (b > j || e < i) return neut;
+        if (b > j || e < i) return neut; // do
         if (b >= i && e <= j) return t[n];
         int mid = (b + e) >> 1, l = n << 1, r = l | 1;
         return merge(query(l, b, mid, i, j), query(r, mid + 1, e, i, j));
