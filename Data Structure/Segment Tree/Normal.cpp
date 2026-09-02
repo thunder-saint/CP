@@ -1,10 +1,10 @@
 const int N = 3e5+1;
 int a[N];
 struct Segment_Tree {
-    int t[4 * N];
     static const int neut = LLONG_MIN; // Neutral element (0 for sum, inf for min)
-    Segment_Tree() {
-        memset(t,0, sizeof t);
+    vector<int> t; 
+    Segment_Tree(int n) {
+        t.assign(4 * n, 0);
     }
     inline int merge(int a, int b) {
         return max(a, b); // Operation
