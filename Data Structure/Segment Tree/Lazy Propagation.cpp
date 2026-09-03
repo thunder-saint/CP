@@ -59,6 +59,8 @@ struct Segment_Tree {
         if (i > e || b > j) return neut_query; // <--- CHANGE
         if (i <= b && e <= j) return t[n];
         int mid = (b + e) >> 1;
-        return merge(query(lc, b, mid, i, j), query(rc, mid + 1, e, i, j));
+        int q1 = query(lc, b, mid, i, j);
+        int q2 = query(rc, mid + 1, e, i, j);
+        return merge(q1, q2);
     }
 };
