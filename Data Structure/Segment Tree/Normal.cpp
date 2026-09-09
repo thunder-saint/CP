@@ -42,4 +42,12 @@ struct Segment_Tree {
         int q2 = query(r, mid + 1, e, i, j);
         return merge(q1, q2);
     }
+    int find(int n, int b, int e, int k) {
+        if (t[n] < k || k <= 0) return neut; // <--- CHANGE
+        if (b == e) return b; 
+        int mid = (b + e) >> 1, l = n << 1, r = l | 1;
+        if (t[l] >= k) return find(l, b, mid, k);
+        else return find(r, mid + 1, e, k - t[l]);
+    }
+}
 };
