@@ -49,5 +49,4 @@ struct Segment_Tree {
         if (t[l] >= k) return find(l, b, mid, k);
         else return find(r, mid + 1, e, k - t[l]);
     }
-}
 };
