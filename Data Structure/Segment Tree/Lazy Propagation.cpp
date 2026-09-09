@@ -70,6 +70,6 @@ struct Segment_Tree {
         int mid = (b + e) >> 1;
         push(lc, b, mid);
         if (t[lc] >= k) return find(lc, b, mid, k);
-        else return find_kth(rc, mid + 1, e, k - t[lc]);
+        else return find(rc, mid + 1, e, k - t[lc]);
     }
 };
