@@ -4,7 +4,7 @@ struct Segment_Tree {
 #define lc (n << 1LL)
 #define rc ((n << 1LL) | 1LL)
     static const int neut_query = 0; // CHANGE 
-    static const int neut_lazy = -1;  //  CHANGE 
+    static const int neut_lazy = 0;  //  CHANGE 
     vector<int> t, lazy; // CHANGE
     Segment_Tree(int n) {
         t.assign(4 * n, 0);
