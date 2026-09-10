@@ -8,7 +8,7 @@ struct Segment_Tree {
     vector<int> t, lazy; // CHANGE
     Segment_Tree(int n) {
         t.assign(4 * n, 0);
-        lazy.assign(4 * n, 0);
+        lazy.assign(4 * n, neut_lazy);
     }
     inline void apply(int n, int b, int e, int v) {
         t[n] += v * (e - b + 1); // CHANGE
