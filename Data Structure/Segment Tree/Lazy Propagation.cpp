@@ -4,28 +4,24 @@ struct Segment_Tree {
 #define lc (n << 1LL)
 #define rc ((n << 1LL) | 1LL)
     static const int neut_query = 0; // CHANGE 
-    static const int neut_lazy = 0;  //  CHANGE 
+    static const int neut_lazy = -1;  //  CHANGE 
     vector<int> t, lazy; // CHANGE
-    vector<bool> is_lazy;
     Segment_Tree(int n) {
         t.assign(4 * n, 0);
         lazy.assign(4 * n, 0);
-        is_lazy.assign(4 * n, false);
     }
     inline void apply(int n, int b, int e, int v) {
         t[n] += v * (e - b + 1); // CHANGE
         lazy[n] += v;            // CHANGE 
-        is_lazy[n] = true;
     }
     inline void push(int n, int b, int e) { 
-        if (!is_lazy[n]) return;   
+        if (lazy[n] == neut_lazy) return;   
         if (b != e) {
             int mid = (b + e) >> 1;
             apply(lc, b, mid, lazy[n]); 
             apply(rc, mid + 1, e, lazy[n]);
         }
         lazy[n] = neut_lazy;
-        is_lazy[n] = false;
     }
     inline int merge(int a, int b) {
         return a + b; // CHANGE
@@ -35,7 +31,6 @@ struct Segment_Tree {
     }
     void build(int n, int b, int e) {
         lazy[n] = neut_lazy; 
-        is_lazy[n] = false;
         if (b == e) {
             t[n] = a[b]; // CHANGE 
             return;
