@@ -12,12 +12,17 @@ struct Segment_Tree {
         lazy.assign(4 * n, 0);
         is_lazy.assign(4 * n, false);
     }
+    inline void apply(int n, int b, int e, int v) {
+        t[n] += v * (e - b + 1); // CHANGE
+        lazy[n] += v;            // CHANGE 
+        is_lazy[n] = true;
+    }
     inline void push(int n, int b, int e) { 
         if (!is_lazy[n]) return;   
-        t[n] += lazy[n] * (e - b + 1); // CHANGE 
         if (b != e) {
-            lazy[lc] += lazy[n], lazy[rc] += lazy[n]; // CHANGE
-            is_lazy[lc] = is_lazy[rc] = true;
+            int mid = (b + e) >> 1;
+            apply(lc, b, mid, lazy[n]); 
+            apply(rc, mid + 1, e, lazy[n]);
         }
         lazy[n] = neut_lazy;
         is_lazy[n] = false;
@@ -44,10 +49,8 @@ struct Segment_Tree {
         push(n, b, e);
         if (j < b || e < i) return;
         if (i <= b && e <= j) {
-            lazy[n] += v; // CHANGE
-            is_lazy[n] = true;
-            push(n, b, e);
-            return;
+           apply(n, b, e, v);
+           return;
         }
         int mid = (b + e) >> 1;
         update(lc, b, mid, i, j, v);
@@ -68,7 +71,6 @@ struct Segment_Tree {
         if (t[n] < k || k <= 0) return -1; // CHANGE
         if (b == e) return b;
         int mid = (b + e) >> 1;
-        push(lc, b, mid);
         if (t[lc] >= k) return find(lc, b, mid, k);
         else return find(rc, mid + 1, e, k - t[lc]);
     }
