@@ -19,6 +19,7 @@ struct Segment_Tree {
         if (b != e) {
             int mid = (b + e) >> 1;
             apply(lc, b, mid, lazy[n]); 
+            // may
             apply(rc, mid + 1, e, lazy[n]);
         }
         lazy[n] = neut_lazy;
@@ -44,6 +45,7 @@ struct Segment_Tree {
         push(n, b, e);
         if (j < b || e < i) return;
         if (i <= b && e <= j) {
+            // may
            apply(n, b, e, v);
            return;
         }
@@ -67,6 +69,6 @@ struct Segment_Tree {
         if (b == e) return b;
         int mid = (b + e) >> 1;
         if (t[lc] >= k) return find(lc, b, mid, k);
-        else return find(rc, mid + 1, e, k - t[lc]);
+        else return find(rc, mid + 1, e, k - t[lc]); // pass k
     }
 };
