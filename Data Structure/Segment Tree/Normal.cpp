@@ -47,6 +47,6 @@ struct Segment_Tree {
         if (b == e) return b; 
         int mid = (b + e) >> 1, l = n << 1, r = l | 1;
         if (t[l] >= k) return find(l, b, mid, k);
-        else return find(r, mid + 1, e, k - t[l]);
+        else return find(r, mid + 1, e, k - t[l]); // pass k
     }
 };
