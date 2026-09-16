@@ -1,13 +1,13 @@
 const int N = 3e5 + 1;
 int a[N];
 struct Segment_Tree {
-    static const int neut = LLONG_MIN; // <--- CHANGE
+    static const int neut = 0; // <--- CHANGE
     vector<int> t; // <--- CHANGE
     Segment_Tree(int n) {
         t.assign(4 * n, 0);
     }
     inline int merge(int a, int b) { // <--- CHANGE
-        return max(a, b); 
+        return a + b; 
     }
     inline void pull(int n) {
         int l = n << 1, r = l | 1;
@@ -42,11 +42,22 @@ struct Segment_Tree {
         int q2 = query(r, mid + 1, e, i, j);
         return merge(q1, q2);
     }
-    int find(int n, int b, int e, int k) {
-        if (t[n] < k || k <= 0) return neut; // <--- CHANGE
-        if (b == e) return b; 
+    int find(int n, int b, int e, int ql, int qr, int &k) { // pass k
+        if (b > qr || e < ql || k <= 0) return -1;
+        if (ql <= b && e <= qr) {
+            if (t[n] < k) {
+                k -= t[n];// skip to find k, keep to find kth
+                return -1;
+            }
+            if (b == e) return b;
+            int mid = (b + e) >> 1, l = n << 1, r = l | 1;
+            if (t[l] >= k) return find(l, b, mid, ql, qr, k);
+            k -= t[l]; // skip to find k, keep to find kth
+            return find(r, mid + 1, e, ql, qr, k);
+        }
         int mid = (b + e) >> 1, l = n << 1, r = l | 1;
-        if (t[l] >= k) return find(l, b, mid, k);
-        else return find(r, mid + 1, e, k - t[l]); // pass k
+        int left_res = find(l, b, mid, ql, qr, k);
+        if (left_res != -1) return left_res;
+        return find(r, mid + 1, e, ql, qr, k);
     }
 };
