@@ -42,8 +42,8 @@ struct Segment_Tree {
         pull(n);
     }
     void update(int n, int b, int e, int i, int j, int v) {
-        push(n, b, e);
         if (j < b || e < i) return;
+        push(n, b, e);
         if (i <= b && e <= j) {
             // may
            apply(n, b, e, v);
@@ -55,20 +55,31 @@ struct Segment_Tree {
         pull(n);
     }
     int query(int n, int b, int e, int i, int j) {
-        push(n, b, e);
         if (i > e || b > j) return neut_query; // CHANGE
+        push(n, b, e);
         if (i <= b && e <= j) return t[n];
         int mid = (b + e) >> 1;
         int q1 = query(lc, b, mid, i, j);
         int q2 = query(rc, mid + 1, e, i, j);
         return merge(q1, q2);
     }
-    int find(int n, int b, int e, int k) {
+    int find(int n, int b, int e, int ql, int qr, int &k) { // pass k
+        if (b > qr || e < ql || k <= 0) return -1;
         push(n, b, e);
-        if (t[n] < k || k <= 0) return -1; // CHANGE
-        if (b == e) return b;
+        if (ql <= b && e <= qr) {
+            if (t[n] < k) {
+                k -= t[n];// skip to find k, keep to find kth
+                return -1;
+            }
+            if (b == e) return b;
+            int mid = (b + e) >> 1;
+            if (t[lc] >= k) return find(lc, b, mid, ql, qr, k);
+            k -= t[lc]; // skip to find k, keep to find kth
+            return find(rc, mid + 1, e, ql, qr, k);
+        }
         int mid = (b + e) >> 1;
-        if (t[lc] >= k) return find(lc, b, mid, k);
-        else return find(rc, mid + 1, e, k - t[lc]); // pass k
+        int left_res = find(lc, b, mid, ql, qr, k);
+        if (left_res != -1) return left_res;
+        return find(rc, mid + 1, e, ql, qr, k);
     }
 };
