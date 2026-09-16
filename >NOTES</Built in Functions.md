@@ -12,6 +12,8 @@
     - if(s.find(str) != string::npos);
 - to get substring of length len from a string s, starting from index i: 
     - s.substr(i,len);
+- cin -> cin.ingore() -> getline();
+- stringstream : divides string, use ss >> l >> r
 ---
 
 # **Bitset:**
