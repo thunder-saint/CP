@@ -17,9 +17,7 @@ struct MergeSortTree {
     }
     void update(int n, int b, int e, int i, int old, int nw) {
         auto it = t[n].upper_bound(old);
-        if (it != t[n].end() && *it == old) {
-            t[n].erase(it);
-        }
+        if (it != t[n].end() && *it == old) t[n].erase(it);
         t[n].insert(nw);
         if (b == e) return;
         int mid = (b + e) >> 1;
@@ -27,17 +25,17 @@ struct MergeSortTree {
         else update(rc, mid + 1, e, i, old, nw);
     }
     template <typename Condition>
-    int query_base(int n, int b, int e, int i, int j, const Condition& cond) {
+    int query(int n, int b, int e, int i, int j, const Condition& cond) {
         if (i > e || b > j) return 0;
         if (i <= b && e <= j) return cond(t[n]);
         int mid = (b + e) >> 1;
-        int q1 = query_base(lc, b, mid, i, j, cond);
-        int q2 = query_base(rc, mid + 1, e, i, j, cond);
+        int q1 = query(lc, b, mid, i, j, cond);
+        int q2 = query(rc, mid + 1, e, i, j, cond);
         return q1 + q2;
     }
 
     int count(int n, int b, int e, int i, int j, int k) {
-        return query_base(n, b, e, i, j, [&](const ordered_multiset<int>& node) {
+        return query(n, b, e, i, j, [&](const ordered_multiset<int>& node) {
             // return node.order_of_key(k); // lt
             // return node.order_of_key(k + 1); // lte
             // return node.size() - node.order_of_key(k + 1); // gt
@@ -58,8 +56,7 @@ struct MergeSortTree {
             auto it = t[n].upper_bound(X); 
             if (it != t[n].end()) best_val = *it; 
             if (it != t[n].begin()) {
-                auto prev_it = prev(it);
-                best_val = get_closer(best_val, *prev_it, X);
+                best_val = get_closer(best_val, *prev(it), X);
             }
             return best_val;
         }
@@ -68,4 +65,14 @@ struct MergeSortTree {
         int q2 = closest_value(rc, mid + 1, e, i, j, X); 
         return get_closer(q1, q2, X);
     }
-};b
+    int find(int n, int b, int e, int i, inr j, int x) {
+        int low = LLONG_MIN, high = LLONG_MAX, ans = high // change;
+        while(low <= high) {
+            int mid = (low + high) / 2;
+            int cnt = count(n, b, e, i, j, mid);
+            if(cnt >= x) ans = mid, high = mid - 1; // change
+            else low = mid + 1 // change;
+        }
+        return ans;
+    } 
+};
