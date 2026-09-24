@@ -16,7 +16,9 @@
 
 # **Special Number Series:**
 - The (n+2)th fibonacci number counts binary sequences of length n with no consecutive 1s (equivalently, no consecutive 0s).
-- nth febonacci number: (√5/5) (((1+√5)/2)^n - ((1-√5)/2)^n)
+- nth febonacci number:
+  - (√5/5) (((1+√5)/2)^n - ((1-√5)/2)^n)
+  - 276601605 (691504013^n - 308495997^n) mod(10^9 + 9)
 ---
 
 # **Things Related to Ranges:**
