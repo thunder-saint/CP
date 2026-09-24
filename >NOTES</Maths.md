@@ -14,11 +14,12 @@
 - gcd(a, lcm(b,c)) = lcm(gcd(a,b), gcd(a,c));
 - gcd of arithmetic progression: gcd(a, d);
 
-# **Special Number Series:**
+# **fibonacci Series:**
 - The (n+2)th fibonacci number counts binary sequences of length n with no consecutive 1s (equivalently, no consecutive 0s).
 - nth febonacci number:
   - (√5/5) (((1+√5)/2)^n - ((1-√5)/2)^n)
   - 276601605 (691504013^n - 308495997^n) mod(10^9 + 9)
+- (a+k)th = (a-1)th * kth + ath * (k + 1)th 
 ---
 
 # **Things Related to Ranges:**
