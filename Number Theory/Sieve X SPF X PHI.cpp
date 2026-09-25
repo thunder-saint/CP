@@ -25,6 +25,19 @@ void sieve() {
         if(prime[i]) primes.push_back(i);
     }
 }
+
+int euler_totient(int n) {
+    int result = n;
+    for (int p = 2; p * p <= n; ++p) {
+        if (n % p == 0) {
+            while (n % p == 0) n /= p;
+            result -= result / p;
+        }
+    }
+    if (n > 1) result -= result / n;
+    return result;
+}
+
 vector <int> segmented_sieve(int l, int r) {
     if(l == 1) l++;
     int lmt = sqrt(r);
