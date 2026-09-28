@@ -1,5 +1,4 @@
-const int N = 1e5 + 1;
-const int LOG = 31;
+const int N = 1e5 + 1, LOG = 31;
 vector<int> g[N], stk;
 vector<pair<int, int>> edge_stk;
 vector<vector<int>> comps, bccs;
@@ -83,5 +82,7 @@ void dfs(int u, int p) {
 
 /*
     if(!vis[v]) dp[u] += dp[v];
-    else if(depth[u] > depth[v]) dp[u]++, dp[v]--;
+    else if(depth[u] > depth[v]) dp[u]++, dp[v]--;seg
+
+    for 2ETT a[2*N] in segtree, flat_tree[2*N], tout[u] = ++time;
 */
