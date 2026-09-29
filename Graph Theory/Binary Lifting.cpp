@@ -49,4 +49,13 @@ struct BinaryLifting {
         k -= depth[u] - depth[l];
         return kth(v, depth[v] - depth[l] - k);
     }
+    int child_ancestor(int u, int v) {
+    // Returns the child of 'u' that is an ancestor of 'v'
+        for (int i = LOG - 1; i >= 0; i--) {
+            if (up[v][i] != 0 && depth[up[v][i]] > depth[u]) {
+                v = up[v][i];
+            }
+        }
+        return v;
+    }
 };
