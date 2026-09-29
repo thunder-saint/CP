@@ -79,10 +79,7 @@ void dfs(int u, int p) {
         comps.push_back(comp);
     }
 }
-
 /*
     if(!vis[v]) dp[u] += dp[v];
-    else if(depth[u] > depth[v]) dp[u]++, dp[v]--;seg
-
-    for 2ETT a[2*N] in segtree, flat_tree[2*N], tout[u] = ++time;
+    else if(depth[u] > depth[v]) dp[u]++, dp[v]--;
 */
