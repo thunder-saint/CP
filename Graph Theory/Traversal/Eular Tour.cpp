@@ -2,17 +2,23 @@
 const int N = 1e5 + 1;
 vector<int> g[N];
 bool vis[2 * N];
-int tin[2 *N], tout[2 * N];
+int tin[2 *N], tout[2 * N], weight[N];
 int timer = 0;
 void dfs(int u, int p) {
     tin[u] = ++timer;
     vis[u] = true;
+   // a[tin[u]] = edge_w;
     for (auto &v : g[u]) {
         if (v == p) continue;
-        if (!vis[v]) dfs(v, u);
+        if (!vis[v]) {
+           // weight[v] = w;
+            dfs(v, u);
+        }
     }    
     tout[u] = ++timer;
+    // a[tout[u]] = -edge_w;
 }
+
 
 // lca O(1); full visit
 vector<int> g[N];
