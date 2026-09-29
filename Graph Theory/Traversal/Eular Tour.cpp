@@ -1,8 +1,8 @@
 // path query: dist from root to node
 const int N = 1e5 + 1;
 vector<int> g[N];
-bool vis[N];
-int tin[N], tout[N];
+bool vis[2 * N];
+int tin[2 *N], tout[2 * N];
 int timer = 0;
 void dfs(int u, int p) {
     tin[u] = ++timer;
