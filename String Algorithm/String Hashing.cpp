@@ -64,9 +64,9 @@ int compare(int i, int j, int x, int y) {
   int lc = lcp(i, j, x, y);
   int len1 = j - i + 1, len2 = y - x + 1;
   if (len1 == len2 && len1 == lc) return 0;
-  else if (lcp == len1) return -1;
-  else if (lcp == len2) return 1;
-  else if (s[i + lcp] > s[x + lcp]) return 1;
+  else if (lc == len1) return -1;
+  else if (lc == len2) return 1;
+  else if (s[i + lc] > s[x + lc]) return 1;
   else return -1;
 }
 //palindrome detectrion
