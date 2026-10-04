@@ -7,11 +7,9 @@ void pre() {
     pw[0] = ipw[0] = {1,1};
     ip1 = power(p1, mod1 - 2, mod1);
     ip2 = power(p2, mod2 - 2, mod2);
-
     for(int i = 1; i < N; i++) {
         pw[i].first = 1LL * pw[i-1].first * p1 % mod1;
         pw[i].second = 1LL * pw[i-1].second * p2 % mod2;
-
         ipw[i].first = 1LL * ipw[i-1].first * ip1 % mod1;
         ipw[i].second = 1LL * ipw[i-1].second * ip2 % mod2;
     }
@@ -19,12 +17,10 @@ void pre() {
 pair<int, int> string_hash(const string &s)) {
     int n = s.size();
     pair<int, int> hs({0, 0});
-
     for(int i = 0; i < n; i++) {
         hs.first = (hs.first + (s[i] * pw[i].first)) % mod1;
         hs.second = (hs.second + (s[i] * pw[i].second)) % mod2;
     }
-
     return hs;
 }
 // for substring hashing
@@ -73,5 +69,35 @@ int compare(int i, int j, int x, int y) {
   else if (s[i + lcp] > s[x + lcp]) return 1;
   else return -1;
 }
-
-
+//palindrome detectrion
+vector <int> odd, even;
+bool is_palindrome(int i, int j) {
+    auto hs1 = S.get_hash(i,j);
+    auto hs2 = R.get_hash(n-j-1, n-i-1);
+    return (hs1 == hs2);
+}
+void palindrome(const string &s) {
+    string f;
+    f = s;
+    odd.resize(n), even.resize(n);
+    reverse(all(f));
+    S.build(s), R.build(f);
+    for(int i=0; i<n; i++) {
+        int l = 0, r = min(i, n-i-1), ans = 0;
+        while(l <= r) {
+            int mid = (l + r) >> 1;
+            if(is_palindrome(i - mid, i + mid)) ans = mid, l = mid + 1;
+            else r = mid - 1;
+        }
+        odd[i] = ans;
+    }
+    for(int i=0; i<n; i++) {
+        int l = 1, r = min(i, n-i), ans = 0;
+        while(l <= r) {
+            int mid = (l + r) >> 1;
+            if(is_palindrome(i-mid, i+mid-1)) ans = mid, l = mid + 1;
+            else r = mid - 1;
+        }
+        even[i] = ans;
+    }
+}
