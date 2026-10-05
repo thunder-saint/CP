@@ -7,12 +7,8 @@ struct Trie {
       prefix_cnt = word_cnt = 0;
     }
   }*root;
-  Trie() {
-    root = new node();
-  }
-  ~Trie() {
-    del(root);
-  }
+  Trie() {root = new node();}
+  ~Trie() {del(root);}
   void insert(const string& s) {
     node* cur = root;
     for (char c : s) {
@@ -43,6 +39,21 @@ struct Trie {
       cur = cur->nxt[idx];
     }
     // return cur->word_cnt or cur->prefix_cnt;;
+  }
+  string get_longest_all_prefix_word() {
+    string best_word = "";
+    auto dfs = [&](auto& self, node* cur, string cur) -> void {
+      if (cur.length() > best_word.length()) {
+        best_word = cur;
+      }
+      for (int i = 0; i < 26; i++) {
+        if (cur->nxt[i] != NULL && cur->nxt[i]->word_cnt > 0) {
+          self(self, cur->nxt[i], current_word + (char)(i + 'a'));
+        }
+      }
+    };
+    dfs(dfs, root, "");
+    return best_word;
   }
   void del(node* cur) {
     if (!cur) return;
