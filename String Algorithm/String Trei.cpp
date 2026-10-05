@@ -34,7 +34,7 @@ struct Trie {
     }
     cur->word_cnt--;
   }
-  int count_words(const string& s) {
+  int count(const string& s) {
     node* cur = root;
     for (char c : s) {
       int idx = c - 'a';
@@ -42,16 +42,7 @@ struct Trie {
       if (cur->nxt[idx]->prefix_cnt == 0) return 0;
       cur = cur->nxt[idx];
     }
-    return cur->word_cnt;
-  }
-  int count_prefix(const string& s) {
-    node* cur = root;
-    for (char c : s) {
-      int idx = c - 'a';
-      if (cur->nxt[idx] == NULL || cur->nxt[idx]->prefix_cnt == 0) return 0;
-      cur = cur->nxt[idx];
-    }
-    return cur->prefix_cnt;
+    // return cur->word_cnt or cur->prefix_cnt;;
   }
   void del(node* cur) {
     if (!cur) return;
