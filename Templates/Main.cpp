@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+#define _(x) cout << fixed << setprecision(x);
 #define int long long
 #define all(x) x.begin(), x.end()
 #define rall(x) x.rbegin(), x.rend()
