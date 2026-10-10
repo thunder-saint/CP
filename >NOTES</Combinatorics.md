@@ -22,4 +22,4 @@
 - Σ(nCk) = 2^n [from k=0,1,..,n];
 ---
 # **Lucas Theorem:**
-- nCr % p = ∏(niCri) % p;
+- nCr % p = ∏(niCri) % p; ni & ri are in p base
