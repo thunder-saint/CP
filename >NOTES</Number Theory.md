@@ -32,7 +32,7 @@
 - Product of divisors of N = N^(NOD / 2);
 
 - if a = ∏(Pi^ei), b = ∏(Pi^fi) and ∏(Pi^(ei % 2)) = ∏(Pi^(fi % 2)) then: a * b is a perfect square;
-- NOD = ∏(Pi + 1), SOS = ∏((Pi^(cnt + 1) - 1) / (pi - 1)) ,
+- NOD = ∏(Pi + 1), SOD = ∏((Pi^(cnt + 1) - 1) / (pi - 1)) ,
 
 ---
 
