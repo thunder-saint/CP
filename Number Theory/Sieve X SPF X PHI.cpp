@@ -5,8 +5,6 @@ int32_t spf[N], phi[N];
 void sieve() {
     prime.set();
     prime[0] = prime[1] = 0;
-    phi[1] = 1;
-    for (int i = 2; i < N; i++) spf[i] = phi[i] = i;
     for (int p = 2; p * p < N; p++) {
         if (prime[p]) {
             for (int i = p * p; i < N; i += p) {
@@ -15,29 +13,52 @@ void sieve() {
             }
         }
     }
+    for(int i=2; i < N; i++) {
+        if(prime[i]) primes.push_back(i);
+    }
+}
+int PHI() {
+    phi[1] = 1;
+    for (int i = 2; i < N; i++) phi[i] = i;
     for (int i = 2; i < N; i++) {
         if (phi[i] == i) {
             for (int j = i; j < N; j += i)
                 phi[j] -= phi[j] / i;
         }
     }
-    for(int i=2; i< N; i++) {
-        if(prime[i]) primes.push_back(i);
-    }
 }
-
-int euler_totient(int n) {
-    int result = n;
-    for (int p = 2; p * p <= n; ++p) {
+tuple<int,int, int> nod_sod_phi(int n) {
+    int nod = 1, sod = 1, coprime = n;
+    while (n > 1) {
+        int p = spf[n], cnt = 0;
+        coprime -= coprime / p;
+        int curr = 1, f = 1;
+        while (n % p == 0) {
+            cnt++; f *= p, curr += f, 
+            n /= p;
+        }
+        nod *= (cnt + 1);
+        sod *= curr;
+    }
+    return {nod, sod, coprime};
+}
+tuple<int, int, int> nod_sod_phi_sqrt(int n) {
+    int nod = 1, sod = 1, phi = n;
+    for (int p : primes) {
+        if (1LL * p * p > n) break;
         if (n % p == 0) {
-            while (n % p == 0) n /= p;
-            result -= result / p;
+            phi -= phi / p;
+            int cnt = 0, curr = 1, f = 1;
+            while (n % p == 0) { 
+                cnt++; f *= p, curr += f; 
+                n /= p; 
+            }
+            nod *= (cnt + 1), sod *= curr;
         }
     }
-    if (n > 1) result -= result / n;
-    return result;
+    if (n > 1) nod *= 2, sod *= (1 + n), phi -= phi / n;
+    return {nod, sod, phi};
 }
-
 vector <int> segmented_sieve(int l, int r) {
     if(l == 1) l++;
     int lmt = sqrt(r);
