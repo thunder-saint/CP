@@ -27,6 +27,17 @@ int PHI() {
         }
     }
 }
+int euler_totient(int n) {
+    int result = n;
+    for (int p = 2; p * p <= n; ++p) {
+        if (n % p == 0) {
+            while (n % p == 0) n /= p;
+            result -= result / p;
+        }
+    }
+    if (n > 1) result -= result / n;
+    return result;
+}
 tuple<int,int, int> nod_sod_phi(int n) {
     int nod = 1, sod = 1, coprime = n;
     while (n > 1) {
@@ -41,23 +52,6 @@ tuple<int,int, int> nod_sod_phi(int n) {
         sod *= curr;
     }
     return {nod, sod, coprime};
-}
-tuple<int, int, int> nod_sod_phi_sqrt(int n) {
-    int nod = 1, sod = 1, phi = n;
-    for (int p : primes) {
-        if (1LL * p * p > n) break;
-        if (n % p == 0) {
-            phi -= phi / p;
-            int cnt = 0, curr = 1, f = 1;
-            while (n % p == 0) { 
-                cnt++; f *= p, curr += f; 
-                n /= p; 
-            }
-            nod *= (cnt + 1), sod *= curr;
-        }
-    }
-    if (n > 1) nod *= 2, sod *= (1 + n), phi -= phi / n;
-    return {nod, sod, phi};
 }
 vector <int> segmented_sieve(int l, int r) {
     if(l == 1) l++;
