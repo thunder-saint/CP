@@ -27,7 +27,7 @@ struct Polygon {
         for(int i = 0; i < n; i++) {
             PT p1 = p[i], p2 = p[(i + 1) % n];
             int dx = abs(p1.x - p2.x), dy = abs(p1.y - p2.y);
-            cnt += std::gcd(dx, dy);
+            cnt += __gcd(dx, dy);
         }
     return cnt;
     }
