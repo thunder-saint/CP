@@ -1,6 +1,5 @@
 const int N = 1000;
-long long C[N][N];
-
+int C[N][N];
 void nCr() {
     for (int i = 0; i < N; i++) {
         C[i][0] = C[i][i] = 1;  
