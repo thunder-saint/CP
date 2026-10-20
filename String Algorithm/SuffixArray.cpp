@@ -72,12 +72,12 @@ struct SuffixArray {
         return SA;
     }
     SuffixArray() {}
-    SuffixArray(const string &_s, int LIM = 256) : s(_s), n(_s.size()) {
+    SuffixArray(const string &_s, int LIM = 256LL) : s(_s), n(_s.size()) {
         if (n == 0) return;
         vector<int> vec(n + 1);
         for (int i = 0; i < n; i++) vec[i] = (unsigned char)s[i];
         vec.back() = 0;
-        sa = SA_IS(vec, max(LIM, 256) + 1);
+        sa = SA_IS(vec, max(LIM, 256LL) + 1);
         sa.erase(sa.begin());
         rank.resize(n);
         for (int i = 0; i < n; i++) rank[sa[i]] = i;
