@@ -1,6 +1,3 @@
-#include <bits/stdc++.h>
-using namespace std;
-#define all(x) x.begin(), x.end()
 struct SuffixArray {
     int n;
     string s;
