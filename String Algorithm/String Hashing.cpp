@@ -14,7 +14,7 @@ void pre() {
         ipw[i].second = 1LL * ipw[i-1].second * ip2 % mod2;
     }
 } 
-pair<int, int> string_hash(const string &s)) {
+pair<int, int> string_hash(const string &s) {
     int n = s.size();
     pair<int, int> hs({0, 0});
     for(int i = 0; i < n; i++) {
@@ -46,58 +46,56 @@ struct Hashing {
         hs.second = 1LL * hs.second * ipw[i].second % mod2;
         return hs;
     }
+    int lcp(int i, int j, int x, int y) {
+        int l = 1, r = min(j - i + 1, y - x + 1), ans = 0;
+        while(l <= r) {
+            int mid = (l + r) >> 1;
+            if(get_hash(i, i + mid - 1) == get_hash(x, x + mid - 1)) {
+                ans = mid;
+                l = mid + 1;
+            }
+            else r = mid - 1;
+        }
+        return ans;
+    }
+    int compare(int i, int j, int x, int y) {
+        int lc = lcp(i, j, x, y);
+        int len1 = j - i + 1, len2 = y - x + 1;
+        if (len1 == len2 && len1 == lc) return 0;
+        else if (lc == len1) return -1;
+        else if (lc == len2) return 1;
+        else if (s[i + lc] > s[x + lc]) return 1;
+        else return -1;
+    }
+    Hashing R;
+    vector<int> odd, even;
+    bool is_palindrome(int i, int j) {
+        auto hs1 = get_hash(i, j);
+        auto hs2 = R.get_hash(n - j - 1, n - i - 1);
+        return (hs1 == hs2);
+    }
+    void palindrome() {
+        odd.resize(n), even.resize(n);
+        string f = s;
+        reverse(f.begin(), f.end());
+        R.build(f);
+        for(int i = 0; i < n; i++) {
+            int l = 0, r = min(i, n - i - 1), ans = 0;
+            while(l <= r) {
+                int mid = (l + r) >> 1;
+                if(is_palindrome(i - mid, i + mid)) ans = mid, l = mid + 1;
+                else r = mid - 1;
+            }
+            odd[i] = ans;
+        }
+        for(int i = 0; i < n; i++) {
+            int l = 1, r = min(i, n - i), ans = 0;
+            while(l <= r) {
+                int mid = (l + r) >> 1;
+                if(is_palindrome(i - mid, i + mid - 1)) ans = mid, l = mid + 1;
+                else r = mid - 1;
+            }
+            even[i] = ans;
+        }
+    }
 };
-// for queries
-int lcp(int i, int j, int x, int y) {
-    int l = 1, r = min(j-i+1, y-x+1), ans=0;
-    while(l<=r) {
-        int mid = (l+r) >> 1;
-        if(get_hash(i, i+mid-1) == get_hash(x, x+mid-1)) {
-            ans = mid;
-            l = mid + 1;
-        }
-        else r = mid - 1;
-    }
-    return ans;
-}
-int compare(int i, int j, int x, int y) {
-  int lc = lcp(i, j, x, y);
-  int len1 = j - i + 1, len2 = y - x + 1;
-  if (len1 == len2 && len1 == lc) return 0;
-  else if (lc == len1) return -1;
-  else if (lc == len2) return 1;
-  else if (s[i + lc] > s[x + lc]) return 1;
-  else return -1;
-}
-//palindrome detectrion
-vector <int> odd, even;
-bool is_palindrome(int i, int j) {
-    auto hs1 = S.get_hash(i,j);
-    auto hs2 = R.get_hash(n-j-1, n-i-1);
-    return (hs1 == hs2);
-}
-void palindrome(const string &s) {
-    string f;
-    f = s;
-    odd.resize(n), even.resize(n);
-    reverse(all(f));
-    S.build(s), R.build(f);
-    for(int i=0; i<n; i++) {
-        int l = 0, r = min(i, n-i-1), ans = 0;
-        while(l <= r) {
-            int mid = (l + r) >> 1;
-            if(is_palindrome(i - mid, i + mid)) ans = mid, l = mid + 1;
-            else r = mid - 1;
-        }
-        odd[i] = ans;
-    }
-    for(int i=0; i<n; i++) {
-        int l = 1, r = min(i, n-i), ans = 0;
-        while(l <= r) {
-            int mid = (l + r) >> 1;
-            if(is_palindrome(i-mid, i+mid-1)) ans = mid, l = mid + 1;
-            else r = mid - 1;
-        }
-        even[i] = ans;
-    }
-}
