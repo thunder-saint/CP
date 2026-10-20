@@ -26,7 +26,9 @@ pair<int, int> string_hash(const string &s) {
 // for substring hashing
 struct Hashing {
     pair<int, int> pref[N];
+    string S;
     void build(const string &s) {
+        S = s;
         int n = s.size();
         for (int i = 0; i < n; i++) {
             pref[i].first = 1LL * s[i] * pw[i].first % mod1;
@@ -64,7 +66,7 @@ struct Hashing {
         if (len1 == len2 && len1 == lc) return 0;
         else if (lc == len1) return -1;
         else if (lc == len2) return 1;
-        else if (s[i + lc] > s[x + lc]) return 1;
+        else if (S[i + lc] > S[x + lc]) return 1;
         else return -1;
     }
 };
