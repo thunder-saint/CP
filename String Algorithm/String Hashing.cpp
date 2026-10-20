@@ -67,35 +67,4 @@ struct Hashing {
         else if (s[i + lc] > s[x + lc]) return 1;
         else return -1;
     }
-    Hashing R;
-    vector<int> odd, even;
-    bool is_palindrome(int i, int j) {
-        auto hs1 = get_hash(i, j);
-        auto hs2 = R.get_hash(n - j - 1, n - i - 1);
-        return (hs1 == hs2);
-    }
-    void palindrome() {
-        odd.resize(n), even.resize(n);
-        string f = s;
-        reverse(f.begin(), f.end());
-        R.build(f);
-        for(int i = 0; i < n; i++) {
-            int l = 0, r = min(i, n - i - 1), ans = 0;
-            while(l <= r) {
-                int mid = (l + r) >> 1;
-                if(is_palindrome(i - mid, i + mid)) ans = mid, l = mid + 1;
-                else r = mid - 1;
-            }
-            odd[i] = ans;
-        }
-        for(int i = 0; i < n; i++) {
-            int l = 1, r = min(i, n - i), ans = 0;
-            while(l <= r) {
-                int mid = (l + r) >> 1;
-                if(is_palindrome(i - mid, i + mid - 1)) ans = mid, l = mid + 1;
-                else r = mid - 1;
-            }
-            even[i] = ans;
-        }
-    }
 };
