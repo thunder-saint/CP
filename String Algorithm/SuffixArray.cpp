@@ -125,7 +125,7 @@ struct SuffixArray {
     }
     int query_min_index(int l, int r) {
         int k = lg[r - l + 1];
-        return min(st_sa[k][l], st_sa[k][r - (1 << k) + 1]);
+        return min(st[k][l], st[k][r - (1 << k) + 1]);
     }
     pair<int, int> find_pattern(const string &p) {
         int m = p.size();
