@@ -93,13 +93,13 @@ struct SuffixArray {
         }
     }
     void build_sparse_table() {
-        if (n <= 1) return;
-        int sz = n - 1;
+        if (n <= 1) return; // (n == 0) for sa
+        int sz = n - 1; // sz == n for sa
         lg.assign(sz + 1, 0);
         for (int i = 2; i <= sz; i++) lg[i] = lg[i / 2] + 1;
         int max_log = lg[sz] + 1;
         st.assign(max_log, vector<int>(sz));
-        for (int i = 0; i < sz; i++) st[0][i] = lcp[i];
+        for (int i = 0; i < sz; i++) st[0][i] = lcp[i]; // sa[i]
         for (int j = 1; j < max_log; j++) {
             for (int i = 0; i + (1 << j) <= sz; i++) {
                 int x = i + (1 << (j - 1));
