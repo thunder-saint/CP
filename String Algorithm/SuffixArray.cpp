@@ -2,7 +2,7 @@ struct SuffixArray {
     int n;
     string s;
     vector<int> sa, rank, lcp, lg;
-    vector<vector<int>> st;
+    vector<vector<int>> st_lcp, st_sa;
     void induced_sort(const vector<int> &vec, int val, 
         vector<int> &SA, const vector<bool> &sl, 
         const vector<int> &lms_idx) {
@@ -93,17 +93,24 @@ struct SuffixArray {
         }
     }
     void build_sparse_table() {
-        if (n <= 1) return; // (n == 0) for sa
-        int sz = n - 1; // sz == n for sa
-        lg.assign(sz + 1, 0);
-        for (int i = 2; i <= sz; i++) lg[i] = lg[i / 2] + 1;
-        int max_log = lg[sz] + 1;
-        st.assign(max_log, vector<int>(sz));
-        for (int i = 0; i < sz; i++) st[0][i] = lcp[i]; // sa[i]
+        if (n == 0) return;
+        lg.assign(n + 1, 0);
+        for (int i = 2; i <= n; i++) lg[i] = lg[i / 2] + 1;
+        int max_log = lg[n] + 1;
+        if (n > 1) {
+            st_lcp.assign(max_log, vector<int>(n - 1));
+            for (int i = 0; i < n - 1; i++) st_lcp[0][i] = lcp[i];
+            for (int j = 1; j < max_log; j++) {
+                for (int i = 0; i + (1 << j) <= n - 1; i++) {
+                    st_lcp[j][i] = min(st_lcp[j - 1][i], st_lcp[j - 1][i + (1 << (j - 1))]);
+                }
+            }
+        }
+        st_sa.assign(max_log, vector<int>(n));
+        for (int i = 0; i < n; i++) st_sa[0][i] = sa[i];
         for (int j = 1; j < max_log; j++) {
-            for (int i = 0; i + (1 << j) <= sz; i++) {
-                int x = i + (1 << (j - 1));
-                st[j][i] = min(st[j - 1][i], st[j - 1][x]);
+            for (int i = 0; i + (1 << j) <= n; i++) {
+                st_sa[j][i] = min(st_sa[j - 1][i], st_sa[j - 1][i + (1 << (j - 1))]);
             }
         }
     }
@@ -111,7 +118,7 @@ struct SuffixArray {
         if (l > r) swap(l, r);
         if (l == r) return n - sa[l];
         int k = lg[r - l];
-        return min(st[k][l], st[k][r - (1 << k)]);
+        return min(st_lcp[k][l], st_lcp[k][r - (1 << k)]);
     }
     int get_lcp(int i, int j) {
         if (i == j) return n - i;
@@ -125,7 +132,7 @@ struct SuffixArray {
     }
     int query_min_index(int l, int r) {
         int k = lg[r - l + 1];
-        return min(st[k][l], st[k][r - (1 << k) + 1]);
+        return min(st_sa[k][l], st_sa[k][r - (1 << k) + 1]);
     }
     pair<int, int> find_pattern(const string &p) {
         int m = p.size();
