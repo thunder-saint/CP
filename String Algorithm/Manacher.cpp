@@ -3,22 +3,24 @@ struct Manacher {
     int n;
     vector<int> p[2];
     void build(const string &str) {
-        s = str. n = s.size();
-        p[0].assign(n, 0), p[1].assign(n, 0);
+        s = str;
+        n = s.size();
+        p[0].assign(n + 1, 0); p[1].assign(n, 0);
         for (int z = 0; z < 2; z++) {
-            for (int i = 0, l = 0, r = -1; i < n; i++) {
-                int y = l + r - i + !z;
-                int k = (i > r) ? z : min(p[z][y], r - i + 1);
-                int x = i - k - !z;
-                while (x >= 0 && i + k < n && s[x] == s[i + k]) k++;
-                p[z][i] = --k;
-                if (i + k > r) l = i - k - !z, r = i + k;
+            for (int i = 0, l = 0, r = 0; i < n; i++) {
+                int t = r - i + !z;
+                if (i < r) p[z][i] = min(t, p[z][l + t]);
+                int L = i - p[z][i], R = i + p[z][i] - !z;
+                while (L >= 1 && R + 1 < n && s[L - 1] == s[R + 1]) {
+                    p[z][i]++, L--, R++;
+                }
+                if (R > r) l = L, r = R;
             }
         }
     }
     bool is_palindrome(int l, int r) const {
         int len = r - l + 1, mid = l + len / 2;
-        if (len % 2 == 1) return p[1][mid] >= len / 2;
+        if (len % 2 != 0) return p[1][mid] >= len / 2;
         else return p[0][mid] >= len / 2;
     }
     int get_max_radius(int i, bool odd) const {
@@ -27,8 +29,7 @@ struct Manacher {
     int count_all_palindromes() const {
         int total = 0;
         for (int i = 0; i < n; i++) {
-            total += p[1][i] + 1;
-            total += p[0][i];   
+            total += p[1][i] + 1, total += p[0][i];   
         }
         return total;
     }
