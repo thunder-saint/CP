@@ -1,3 +1,4 @@
+// a ^ x = b % m
 int discrete_log(int a, int b, int m) {
   static const int inf = 2e9;
   int n = (int) sqrt (m + .0) + 1;
@@ -19,8 +20,6 @@ int discrete_log(int a, int b, int m) {
   if (ans == inf) ans = -1;
   return ans;
 }
-
-// discrete log but a and m may not be co-prime
 int discrete_log_noncoprime(int a, int b, int m) {
   if (m == 1) return 0;
   if (b == 1) return 0;
