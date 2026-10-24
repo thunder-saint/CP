@@ -1,7 +1,7 @@
 const int N = 1e7+1;
 bitset<N + 1> prime;
 vector <int> primes;
-int32_t spf[N], phi[N];
+int spf[N], phi[N];
 void sieve() {
     prime.set();
     prime[0] = prime[1] = 0;
@@ -17,7 +17,7 @@ void sieve() {
         if(prime[i]) primes.push_back(i);
     }
 }
-int PHI() {
+void PHI() {
     phi[1] = 1;
     for (int i = 2; i < N; i++) phi[i] = i;
     for (int i = 2; i < N; i++) {
