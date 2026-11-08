@@ -5,8 +5,6 @@ using namespace std;
 #define all(x) x.begin(), x.end()
 #define rall(x) x.rbegin(), x.rend()
 #define endl '\n'
-const int MOD = 1000000007LL;
-const double eps = 1e-9;
 void solve() {
  
 }
@@ -15,9 +13,9 @@ int32_t main() {
     cin.tie(0); cout.tie(0);
     // freopen("input.txt","r",stdin);
     // freopen("output.txt","w",stdout);
-    int t = 1;
-    cin >> t;
-    for(int i = 1; i <= t; i++) {
+    int testcase = 1;
+    cin >> testcase;
+    for(int i = 1; i <= testcase; i++) {
         // cout << "Case " << i << ":\n";
         solve();
     }
